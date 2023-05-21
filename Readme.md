@@ -16,7 +16,8 @@ La aplicación incluye una función de web scraping que permite obtener los movi
 * Frontend: React JS, Chakra UI, FontAwesome.
 * Backend: Express, Crypto-js, WebToken, Cors, Django, Selnium.
 * Base de Datos: MongoDB (No Relacional), PostGreSQL.
-*Instalación*
+
+##### *Instalación*
 Clona este repositorio en tu máquina local.
 
 ```python
