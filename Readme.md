@@ -31,6 +31,7 @@ Ejecuta npm start para iniciar la aplicación en modo de desarrollo.
 
 ### Próximas Mejoras*
 * Agregar más sitios bancarios para centralizar todas las cuentas del usuario.
+* Agregar KPI´S para poder tener metricas de rendimiento tanto de cuentas como de gastos.
 * Mejorar la interfaz de usuario y la experiencia de usuario.
 * Implementar gráficos y estadísticas para visualizar los gastos y balances.
 * Añadir notificaciones y recordatorios para pagos y fechas importantes.
