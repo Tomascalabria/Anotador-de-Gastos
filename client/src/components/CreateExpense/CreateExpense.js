@@ -14,7 +14,7 @@ const [status,setStatus]=useState(false)
 const [sharedExpense,setSharedExpense]=useState(false)
 
 // const local_url="http://localhost:5050/expenses/create"
-const prod_url='https://controladorgastosapi.herokuapp.com/expenses/create'
+const prod_url='http://localhost:5050/expenses/create'
 const submitGasto=(e)=>{
 
   e.preventDefault()

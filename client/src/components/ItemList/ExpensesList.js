@@ -4,7 +4,6 @@ import axios from 'axios'
 import React,{useContext, useEffect, useState} from 'react'
 import { AuthContext } from '../../Context/AuthContext'
 import { Expense } from './Expense'
-import {Dashboard} from '../Dashboard/Dashboard.js'
 import { ExpensesContext } from '../../Context/ExpensesContext/ExpensesContext'
 export const ExpensesList = () => {
     const {expenses,setExpenses}=useContext(ExpensesContext)
@@ -33,7 +32,7 @@ export const ExpensesList = () => {
 
   return (
     <>
-<Container w={'max-content'} height='100%'>
+<Container w={'max-content'} h='xl'>
 <Tabs w={'max-content'} alignContent='center' justifyContent={'center'} alignItems='center' display={'flex'} flexDir='column'>
   <TabList  w={'100%'} justifyContent='center'>
     <Tab >Table</Tab>
@@ -70,7 +69,7 @@ export const ExpensesList = () => {
     </Table>
     </TableContainer>
 </Flex></TabPanel>
-    <TabPanel w={'100%'} height='60%' alignContent='center' justifyContent={'center'} alignItems='center'>    <Dashboard props={[expenses]} /></TabPanel>
+    <TabPanel w={'100%'} height='60%' alignContent='center' justifyContent={'center'} alignItems='center'>    </TabPanel>
 
     </TabPanels>
 

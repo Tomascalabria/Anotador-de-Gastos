@@ -1,34 +1,35 @@
-const express= require('express')
-const app=express()
+const express = require('express');
+const app = express();
 require('dotenv').config();
-const body_parser =require('body-parser')
-const users=require('./Src/routes/users')
-const expenses=require('./Src/routes/Expenses')
-const friends=require('./Src/routes/friends')
-const mongoose =require('mongoose')
-const cors = require('cors')
+const auth = require('./Src/Middlewares/auth')
+const bodyParser = require('body-parser');
+const users = require('./Src/routes/users');
+const expenses = require('./Src/routes/Expenses');
+const friends = require('./Src/routes/friends');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
-app.use(cors({origin:true}))
+app.use(cors({ origin: true }));
 
-app.use(body_parser.urlencoded({ extended: false }));
-app.use(body_parser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-mongoose.connect(`${process.env.MONGO_URI}`)
-.then((data)=>{
-    console.log('Connection to DB was succesfull!')})
-.catch((err)=>{console.log(err.message)})
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log('Connected to the MongoDB database');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
+app.use('/auth', auth);
+app.use('/users', users);
+app.use('/expenses', expenses);
+app.use('/friends', friends);
 
+const port = process.env.PORT || 5050;
+const host = '0.0.0.0';
 
-app.use('/users',(users))
-app.use('/expenses',expenses)
-app.use('/friends',friends)
-
-
-
-const port =  process.env.PORT||5050
-const host = '0.0.0.0'
-
-app.listen(port,host,()=>{
-console.log('Api is on in the port '  +port)
-})
+app.listen(port, host, () => {
+  console.log('API is running on port ' + port);
+});

@@ -1,45 +1,46 @@
-import {
-    Box,
-    Button,
-    Container,
-    FormControl,
-    FormLabel,
-    Heading,
-    HStack,
-    Input,
-    Stack,
-    Text,
-    useBreakpointValue,
-    Flex,
-    Icon,
-    chakra,
-    Checkbox,
-    CheckboxGroup
-    
-  } from '@chakra-ui/react'
-  import  React,{useContext, useRef} from 'react'
-  import { Link } from 'react-router-dom'
-  import { loginProcess } from '../../../Context/ApiCall'
-import { AuthContext } from '../../../Context/AuthContext'
-  import { PasswordField } from '../PasswordField'
-  
-  export const Login = () => {
-    const {user,error}=useContext(AuthContext)
-    const {dispatch}=useContext(AuthContext)
-    const username=useRef()
-    const password=useRef()
-  
+import React, { useContext, useRef, useEffect } from 'react';
+import { Box, Button, Container, FormControl, FormLabel, Heading, HStack, Input, Stack, Text, useBreakpointValue, Flex, Icon, chakra, Checkbox, CheckboxGroup } from '@chakra-ui/react';
+import { Link, useNavigate } from 'react-router-dom';
+import { loginProcess } from '../../../Context/ApiCall';
+import { AuthContext } from '../../../Context/AuthContext';
+import { PasswordField } from '../PasswordField';
 
+export const Login = () => {
+  const { user, error } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
+  const username = useRef();
+  const password = useRef();
+  const navigate = useNavigate();
 
-    const handleClick=(e)=>{
-      e.preventDefault()
+  const handleClick = (e) => {
+    e.preventDefault();
+    loginProcess(
+      { username: username.current.value.toLowerCase(), password: password.current.value },
+      dispatch
+    );
+  };
 
-      loginProcess({username:(username.current.value).toLowerCase(),password:password.current.value},dispatch)
-
-
+  useEffect(() => {
+    // Redirect to registration if the user is logged in
+    if (user) {
+      navigate('/');
     }
+  }, [user, navigate]);
 
- return(
+  useEffect(() => {
+    // Redirect after 2 seconds if the user logged in successfully
+    if (user) {
+      const redirectTimeout = setTimeout(() => {
+        navigate('/'); // Change the desired redirect path here
+      }, 2000);
+
+      return () => {
+        clearTimeout(redirectTimeout);
+      };
+    }
+  }, [user, navigate]);
+
+  return (
     <Container
       maxW="lg"
       py={{
@@ -51,6 +52,7 @@ import { AuthContext } from '../../../Context/AuthContext'
         sm: '8',
       }}
     >
+
       <Heading size={useBreakpointValue({
                 base: 'm',
                 md: 'xl',
@@ -126,9 +128,8 @@ import { AuthContext } from '../../../Context/AuthContext'
           maxW="sm"
           w="full"
           mx="auto"
-          bg="transparent"
           _dark={{
-            bg: "darkAlpha",
+            bg: "#2A2A2A",
           }}
           rounded="lg"
           overflow="hidden"
@@ -177,7 +178,7 @@ import { AuthContext } from '../../../Context/AuthContext'
     mx="auto"
     bg="transparent"
     _dark={{
-      bg: "darkAlpha",
+      bg: "#2A2A2A",
     }}
     rounded="lg"
     overflow="hidden"
@@ -205,7 +206,7 @@ import { AuthContext } from '../../../Context/AuthContext'
           fontSize="sm"
           fontWeight={'bold'}
         >
-          {!user?<></>:`Bienvenido ${user.username}` }
+          {!user?<></>:`Bienvenido ${user.userInfo.username}` }
         </chakra.p>
       </Box>
     </Box>

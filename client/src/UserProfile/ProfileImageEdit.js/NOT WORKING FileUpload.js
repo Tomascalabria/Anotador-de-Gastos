@@ -27,7 +27,7 @@ export const  FileUpload=({ onFileAccepted })=> {
       cursor="pointer"
       
       bg={isDragActive ? activeBg : 'transparent'}
-      _hover={{ bg: activeBg }}
+      _hover={{ bg: '#2A2A2A' }}
       transition="background-color 0.3s ease"
       borderRadius={4} 
       border="3px dashed"

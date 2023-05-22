@@ -9,7 +9,7 @@ const {user}=useContext(AuthContext)
 const [expenses,setExpenses]=useState([])
   const deleteItem= ()=>{   
 console.log(expenses)
-    axios.delete(`https://controladorgastosapi.herokuapp.com/expenses/delete/${_id}`,{headers:{
+    axios.delete(`http://localhost:5050/expenses/delete/${_id}`,{headers:{
       username:user.userInfo.username,
       admin:user.userInfo.isAdmin
     }})

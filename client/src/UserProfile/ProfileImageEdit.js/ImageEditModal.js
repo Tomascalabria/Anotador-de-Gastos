@@ -10,7 +10,7 @@ export const ImageEditModal =()=> {
     const {user} =useContext(AuthContext)
 
 const editImage=()=>{
-  axios.post(`https://controladorgastosapi.herokuapp.com/users/:${user.userInfo._id}`)
+  axios.post(`http://localhost:5050/users/:${user.userInfo._id}`)
   fileInserted?alert(fileInserted[0].name):alert('No file has been inserted. Please insert one and retry')
 }
 const [fileInserted,setFile]=useState(false)

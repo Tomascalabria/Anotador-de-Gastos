@@ -23,7 +23,7 @@ const handleSubmit=async(e)=>{
   e.preventDefault()
 try{
   
-  const res=await axios.post('https://controladorgastosapi.herokuapp.com/users/register',{username:(username.current.value).toLowerCase(),email:(email.current.value).toLowerCase(),password:password.current.value})
+  const res=await axios.post('http://localhost:5050/Auth/register',{username:(username.current.value).toLowerCase(),email:(email.current.value).toLowerCase(),password:password.current.value})
   console.log(isFetching)
 
   setStatus(res.status)
@@ -146,7 +146,7 @@ res.status===201?setTimeout(() => {
           mx="auto"
           bg="transparent"
           _dark={{
-            bg: "darkAlpha",
+            bg: "#2A2A2A",
           }}
           rounded="lg"
           overflow="hidden"

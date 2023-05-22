@@ -16,7 +16,7 @@ export const SharedExpenses=({props})=> {
 const {user }=useContext(AuthContext)
 const route=''
   const getFriends=async ()=>{
-    const friends =await axios.get(`https://controladorgastosapi.herokuapp.com/${user.userInfo._id}/search`)
+    const friends =await axios.get(`http://localhost:5050/${user.userInfo._id}/search`)
     .then((res)=>{
       setFriends(res.data)
     })

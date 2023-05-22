@@ -1,71 +1,99 @@
-import { ChakraProvider, Box, IconButton, Text } from '@chakra-ui/react';
-import { useContext, useEffect, useState } from 'react';
-import { FaSyncAlt } from 'react-icons/fa';
-
-import axios from 'axios';
-import { AuthContext } from '../../../Context/AuthContext';
-
-export const Investments = () => {
-  const { user } = useContext(AuthContext);
-  const [balance, setBalance] = useState(null);
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  Divider,
+  Button,
+  Icon,
+  Text,
+  Heading,
+  Stack,
+  useColorMode,
+  Img,
+  Container,
+  Box,
+} from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { FaSyncAlt } from "react-icons/fa";
+import axios from 'axios'
+export const Balances = ({ company }) => {
+  const { colorMode } = useColorMode(); // Get the current color mode
+  const [balances, setBalances] = useState([]);
   const [lastUpdated, setLastUpdated] = useState(null);
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
 
-  const fetchParams = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/parameters');
-      const { cocos_username, cocos_password } = response.data;
-      setUsername(cocos_username);
-      setPassword(cocos_password);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { name, type, logo, about } = company;
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/balance/', {
-        params: {
-          username: username,
-          password: password,
-        },
-      });
-      setBalance(response.data.balance);
-      setLastUpdated(new Date().toLocaleTimeString());
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:8080/${company.id}/balances`);
+  //     setBalances(response.data.balance);
+  //     setLastUpdated(new Date().toLocaleTimeString());
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchParams();
-  }, []);
+  //   useEffect(() => {
+  //     fetchData();
+  //   }, []);
 
-  useEffect(() => {
-    if (username && password) {
-      fetchData();
-    }
-  }, [username, password]);
+    const hoverStyle = {
+      background: colorMode === "dark" ? "#2d2f38" : "#e7eee2",
+      cursor: "pointer",
+      opacity: "0.9",
+    };
 
-  return (
-    <ChakraProvider>
-      <Box w="s" h="200px" bg="whiteAlpha.400" borderRadius="md" p={4}>
-        <Text>Cocos Capital</Text>
-        <Text fontSize="1.4rem" color="White" mb={4}>
-          Balance: ${balance}
-        </Text>
-        <Box display="flex" alignItems="center" mb={2}>
-          <Text fontSize="12px" mr={2}>
-            Last Updated:
+    const cardStyle = {
+      transition: "background 0.6s",
+    };
+
+    const cardProps = {
+      borderWidth: "1.2px",
+      borderColor: colorMode === "dark" ? "gray.900" : "gray.200",
+      _hover: hoverStyle,
+      background: colorMode === "dark" ? "#2a2a2" : "#fffffef",
+      style: cardStyle,
+    };
+
+    return (
+      <>
+      <Card w="400px" h={'200px'} {...cardProps}>
+        <CardBody w="370px" h={"100%"}>
+          <Container display={"flex"} flexDir={"column"} justifyContent={"center"}>
+            <Stack
+              width={"100%"}
+              h={"80%"}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                margin: "0",
+                justifyContent: "flex-start",
+              }}
+            >
+              <Img
+                src={logo}
+                color={colorMode === "dark" ? "dark.text" : "light.text"}
+                width={"100px"}
+                marginLeft={"-2.5"}
+                height={"80px"}
+                marginBottom={'20px'}
+                marginTop={"-25px"}
+                justifySelf={"flex-start"}
+              />
+            </Stack>
+          </Container>
+            <Text marginTop={"5px"} color={colorMode === "dark" ? "dark.text" : "light.text"}style={{ fontWeight: "bold", fontSize: "19px" }} letterSpacing={'2px'} >$ {balances} </Text>
+        </CardBody>
+        <Divider />
+        <CardFooter display="inline-flex" w="100%" justifyContent="space-between" alignItems="center">
+          <Text fontSize="sm" color="gray.500">
+            Ult. Actulización: {lastUpdated}
           </Text>
-          <Text fontSize="sm" fontWeight="bold" mr={2}>
-            {lastUpdated}
-          </Text>
-          <IconButton size={'12px'} icon={<FaSyncAlt />} aria-label="Update Balance" onClick={fetchData} />
-        </Box>
-      </Box>
-    </ChakraProvider>
+          <Button size="sm" title="Refrescar balances" background="transparent" onClick={'fetchData'} colorScheme="blue">
+            <Icon as={FaSyncAlt} boxSize={4} color="blue.500" />
+          </Button>
+        </CardFooter>
+      </Card>
+    </>
   );
 };
-    

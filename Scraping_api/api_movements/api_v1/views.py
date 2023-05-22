@@ -7,9 +7,10 @@ from api_v1.serializers import BalanceSerializer, HoldingSerializer, BuySellMove
 from api_v1.models import Balance, Holding, BuySellMovement, DepositExtractionMovement  # Import the models
 from Cocos import Cocos
 from Driver import Driver
+from Iol import Iol
 
 class BalanceView(APIView):
-    def get(self, request):
+    def get(self, request, id):
         username = request.GET.get('username')
         password = request.GET.get('password')
 
@@ -18,7 +19,14 @@ class BalanceView(APIView):
 
         driver = Driver()
         cocos = Cocos(driver, username, password)
-        balance_data = cocos.obtenerBalance()
+        iol = iol(driver, username, password)
+
+        if id == '1':
+            balance_data = cocos.obtenerBalance()
+        elif id == '2':
+            balance_data = iol.obtenerBalance()
+        else:
+            return Response({'error': 'Invalid balance ID'}, status=400)
 
         if balance_data is None:
             return Response({'error': 'Failed to obtain balance data'}, status=500)
