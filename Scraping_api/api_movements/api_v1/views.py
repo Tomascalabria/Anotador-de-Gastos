@@ -1,13 +1,53 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.http import request
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api_v1.serializers import BalanceSerializer, HoldingSerializer, BuySellMovementSerializer, DepositExtractionMovementSerializer
+from api_v1.serializers import BalanceSerializer, HoldingSerializer, BuySellMovementSerializer, DepositExtractionMovementSerializer,CocosCredentialsSerializer,IoLCredentialsSerializer
 from api_v1.models import Balance, Holding, BuySellMovement, DepositExtractionMovement  # Import the models
 from Cocos import Cocos
 from Driver import Driver
 from Iol import Iol
+from api_v1.models import CocosCredentials, IoLCredentials
+
+
+from rest_framework.exceptions import NotFound
+
+class CredentialsView(APIView):
+    def post(self, request, company_id):
+        if company_id == '1':
+            credentials = CocosCredentials.objects.filter(company_id=company_id).first()
+            serializer = CocosCredentialsSerializer(credentials, data=request.data)
+        elif company_id == '2':
+            credentials = IoLCredentials.objects.filter(company_id=company_id).first()
+            serializer = IoLCredentialsSerializer(credentials, data=request.data)
+        else:
+            return Response({'error': 'Company  id not supported'}, status=400)
+
+        if not credentials:
+            raise NotFound("Credentials not found")
+
+        if serializer.is_valid():
+            serializer.save(company_id=company_id)
+            return Response(serializer.data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
+
+class UserCredentialsView(APIView):
+    def get(self, company_id):
+        if company_id == '1':
+            credentials = get_object_or_404(CocosCredentials, company_id=company_id)
+        elif company_id == '2':
+            credentials = get_object_or_404(IoLCredentials, company_id=company_id)
+        else:
+            return JsonResponse({'error': 'Company type not supported'}, status=400)
+
+        return JsonResponse({
+            'username': credentials.username,
+            'password': credentials.password,  # Note: This is the encrypted password
+        })
+
 
 class BalanceView(APIView):
     def get(self, request, id):
@@ -19,12 +59,12 @@ class BalanceView(APIView):
 
         driver = Driver()
         cocos = Cocos(driver, username, password)
-        iol = iol(driver, username, password)
+        invertir_online = Iol(driver, username, password)
 
         if id == '1':
             balance_data = cocos.obtenerBalance()
         elif id == '2':
-            balance_data = iol.obtenerBalance()
+            balance_data = invertir_online.obtenerBalance()
         else:
             return Response({'error': 'Invalid balance ID'}, status=400)
 

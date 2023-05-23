@@ -1,5 +1,15 @@
 from rest_framework import serializers
-from api_v1.models import Balance, Holding, BuySellMovement, DepositExtractionMovement
+from api_v1.models import Balance, Holding, BuySellMovement, DepositExtractionMovement,CocosCredentials,IoLCredentials
+
+class CocosCredentialsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CocosCredentials
+        fields = '__all__'
+
+class IoLCredentialsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IoLCredentials
+        fields = '__all__'
 
 class BalanceSerializer(serializers.ModelSerializer):
     class Meta:

@@ -13,29 +13,47 @@ import {
   Container,
   Box,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FaSyncAlt } from "react-icons/fa";
 import axios from 'axios'
+import { AuthContext } from "../../../Context/AuthContext";
+
 export const Balances = ({ company }) => {
-  const { colorMode } = useColorMode(); // Get the current color mode
+  const { user } = useContext(AuthContext);
+  const { colorMode } = useColorMode();
   const [balances, setBalances] = useState([]);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const { name, type, logo, about, id } = company;
+  const fetchCredentials = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/credentials/${id}/${type}/`);
+      const { username, password } = response.data;
 
-  const { name, type, logo, about } = company;
+      // Now you have the username and password, you can proceed with fetchData
+      fetchData(username, password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:8080/${company.id}/balances`);
-  //     setBalances(response.data.balance);
-  //     setLastUpdated(new Date().toLocaleTimeString());
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const fetchData = async (username, password) => {
+    try {
+      const response = await axios.post(`http://localhost:8080/${company.id}/balances`, {
+        user_id: user._id,
+        company_id: id,
+        username,
+        password
+      });
+      setBalances(response.data.balance);
+      setLastUpdated(new Date().toLocaleTimeString());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //   useEffect(() => {
-  //     fetchData();
-  //   }, []);
+  useEffect(() => {
+    fetchCredentials();
+  }, []);
 
     const hoverStyle = {
       background: colorMode === "dark" ? "#2d2f38" : "#e7eee2",
@@ -89,7 +107,7 @@ export const Balances = ({ company }) => {
           <Text fontSize="sm" color="gray.500">
             Ult. Actulización: {lastUpdated}
           </Text>
-          <Button size="sm" title="Refrescar balances" background="transparent" onClick={'fetchData'} colorScheme="blue">
+          <Button size="sm" title="Refrescar balances" background="transparent" onClick={fetchData} colorScheme="blue">
             <Icon as={FaSyncAlt} boxSize={4} color="blue.500" />
           </Button>
         </CardFooter>
