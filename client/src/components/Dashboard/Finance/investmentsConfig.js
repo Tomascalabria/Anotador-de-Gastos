@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
-import { AuthContext } from 'path/to/your/AuthContext'; // Replace with the correct path to your AuthContext
+import { AuthContext } from '../../../Context/AuthContext';
 
 export const investmentsConfig = () => {
   const { user } = useContext(AuthContext);

@@ -1,112 +1,185 @@
 import {
-    Box,
-    Button,
-    ButtonGroup,
-    WrapItem,
-    Flex,
-    useBreakpointValue,
-    Heading,
-    useColorMode,
-    useColorModeValue,
-    IconButton,
-    ChakraProvider,
-    ColorModeProvider,
-    Icon,
-  } from '@chakra-ui/react';
-  import { Link, useNavigate } from 'react-router-dom';
-  import icon from '../../../Icons/image-em8mmKxnS-transformed-removebg-preview.png'
-  import { AuthContext } from '../../../Context/AuthContext';
-  import { logoutProcess } from '../../../Context/ApiCall';
-  import { ExpensesContactButon } from './ExpensesContactButon.js';
-  import { UserProfile } from '../../../UserProfile/UserProfile';
-  import { ModalMenu } from './ModalMenu';
-  import { FriendsContactButton } from './FriendsContactButton';
-  import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-  import { AccountsContactButton } from './Accounts';
-  import { useContext } from 'react';
+  Avatar,
+  Box,
+  Flex,
+  Icon,
+  Text,
+  Stack,
+  Image,
+  Button,
+  Heading,
+  BoxProps,
+  Drawer,
+  DrawerContent,
+  IconButton,
+  useDisclosure,
+  DrawerOverlay,
+  useColorModeValue,
+  useColorMode
   
-  export const SessionNavBar = () => {
-    const navigate = useNavigate();
-    const { dispatch } = useContext(AuthContext);
-    const handleLogout = () => {
-      logoutProcess(dispatch);
-      navigate('/');
-    };
-  
-    const { colorMode, toggleColorMode } = useColorMode();
-    const titleColor = useColorModeValue('black', 'white');
-  
-    const friends = [
-      { name: 'Ver Amigxs', index: 1, route: '/amigos/ver' },
-      { name: 'Agregar amigxs', index: 2, route: '/amigos/agregar' },
-    ];
-    const accounts = [
-      { name: 'Balances', index: 1, route: '/cuentas/balances' },
-      { name: 'Movimientos', index: 2, route: '/cuentas/movimientos' },
-      { name: 'Configuración', index: 3, route: '/cuentas/configuracion' },
-    ];
-    const expenses = [
-      { name: 'Crear Gasto', index: 0, route: '/gastos/crear' },
-      { name: 'Ver gastos', index: 1, route: '/gastos/ver' },
-    ];
-  
-    const isDesktop = useBreakpointValue({
-      base: false,
-      lg: true,
-    });
-  
-    return (
-      <Box
-        as="nav"
-        bg={useColorModeValue('#e9fbfb', '##000')}
-        w="100%"
-        justifyContent="flex-start"
-        boxShadow={useColorModeValue('sm', 'sm-dark')}
-        borderBottom={useColorModeValue('solid .9px #a7eaff','solid .9px #515151')}
-      >
+} from '@chakra-ui/react';
+
+// Here we have used react-icons package for the icons
+import { FaBell } from 'react-icons/fa';
+import { AiOutlineTeam, AiOutlineHome } from 'react-icons/ai';
+import { BsFolder2, BsCalendarCheck } from 'react-icons/bs';
+import { FiMenu } from 'react-icons/fi';
+import { RiFlashlightFill } from 'react-icons/ri';
+import {Home} from '../../Home/Home'
+import { UserProfile } from '../../../UserProfile/UserProfile';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Link, NavLink } from 'react-router-dom';
+
+export const  Index=()=> {
+  const { isOpen, onClose, onOpen } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
+
+
+  return (
+    <Box as="section" bg={useColorModeValue('gray.100', 'gray.800')} marginLeft={'-20px'} h={'100%'} w={'100%' }>
+      <SidebarContent display={{ base: 'none', md: 'unset' }}   />
+      <Drawer isOpen={isOpen} onClose={onClose} is placement="left" >
+        <DrawerOverlay />
+        <DrawerContent>
+          <SidebarContent w="full" borderRight="none" />
+        </DrawerContent>
+      </Drawer>
+      <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
         <Flex
-          py={{ base: 4, lg: 5 }}
-          w="100%"
-          justifyContent="space-around"
+          as="header"
           align="center"
-          px={{ base: 4, lg: 8 }}
+          justify={{ base: 'space-between', md: 'flex-end' }}
+          w="100%"
+          px="4"
+          borderBottomWidth="1px"
+          borderColor={useColorModeValue('inherit', 'gray.700')}
+          bg={useColorModeValue('gray.100', 'gray.800')}
+          boxShadow="sm"
+          h="14"
         >
-        
-          {isDesktop ? (
-            <Flex alignItems="center" justifyContent={'space-around'} width={'80%'}>
-              <ButtonGroup variant="link" spacing="8">
-                <Link to="/"><IconButton ><img width={'150px'} height={'150px'} src={icon}></img></IconButton> </Link>
-              </ButtonGroup>
-              <ButtonGroup>
-                <AccountsContactButton accounts={accounts} />
-              </ButtonGroup>
-              <ButtonGroup spacing="2">
-                <ExpensesContactButon expenses={expenses} />
-              </ButtonGroup>
-              <ButtonGroup spacing="8">
-                <FriendsContactButton friends={friends} />
-              </ButtonGroup>
-              <ButtonGroup spacing="4">
-                <WrapItem>
-                  <UserProfile />
-                </WrapItem>
-                <Button variant="ghost" onClick={handleLogout}>
-                  Logout
-                </Button>
-              </ButtonGroup>
-              <IconButton
-                key="color-mode-toggle"
-                background="transparent"
-                onClick={toggleColorMode}
-                icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
-              />
-            </Flex>
-          ) : (
-            <ModalMenu handleLogout={handleLogout} />
-          )}
+          <IconButton
+            aria-label="Menu"
+            display={{ base: 'inline-flex', md: 'none' }}
+            onClick={onOpen}
+            icon={<FiMenu />}
+            size="md"
+          />
+
+          <Flex align="left" >
+            <IconButton background={'transparent'} _hover={{background:'gray.20'}}marginRight={'20px'} color={useColorModeValue('gray.800', 'white')} icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}  onClick={toggleColorMode} cursor="pointer" />
+            <UserProfile/>
+          </Flex>
         </Flex>
-      </Box>
-    );
-  };
-  
-  
+
+</Box>
+    
+    </Box>
+  );
+}
+
+const friends = [
+  { name: 'Ver Amigxs', index: 1, route: '/amigos/ver' },
+  { name: 'Agregar amigxs', index: 2, route: '/amigos/agregar' },
+];
+const accounts = [
+  { name: 'Balances', index: 1, route: '/cuentas/balances' },
+  { name: 'Movimientos', index: 2, route: '/cuentas/movimientos' },
+  { name: 'Configuración', index: 3, route: '/cuentas/configuracion' },
+];
+const expenses = [
+  { name: 'Crear Gasto', index: 0, route: '/gastos/crear' },
+  { name: 'Ver gastos', index: 1, route: '/gastos/ver' },
+];
+const SidebarContent = ({ ...props }) => (
+  <Box
+    as="nav"
+    pos="fixed"
+    top="0"
+    left="0"
+    zIndex="sticky"
+    h="full"
+    w={'40'}
+    pb="10"
+    overflowX="hidden"
+    overflowY="hidden"
+    bg={useColorModeValue('gray.100', 'gray.800')}
+    borderColor={useColorModeValue('inherit', 'gray.700')}
+    borderRightWidth="2px"
+    {...props}
+  >
+    <Flex px="4" py="5" align="center">
+      <Text
+
+        fontSize="3xl"
+        ml="1"
+        color={useColorModeValue('brand.500', 'white')}
+        fontWeight='bold'
+      >
+        PIANL
+      </Text>
+    </Flex>
+    <Flex direction="column" justifyContent={'left'} alignItems={'left'} textAlign={'left'} as="nav" fontSize="md" color="gray.600" aria-label="Main Navigation">
+      <NavItem route={'/'}  icon={AiOutlineHome}>Dashboard</NavItem>
+      <NavItemGroup title="Cuentas">
+        {accounts.map((item) => (
+          <NavItem key={item.index} route={item.route}>{item.name}</NavItem>
+        ))}
+      </NavItemGroup>
+      <NavItemGroup title="Gastos">
+        {expenses.map((item) => (
+          <NavItem key={item.index} route={item.route}>{item.name}</NavItem>
+        ))}
+      </NavItemGroup>
+      <NavItemGroup title="Amigxs">
+        {friends.map((item) => (
+          <NavItem key={item.index} route={item.route}>{item.name}</NavItem>
+        ))}
+      </NavItemGroup>
+    </Flex>
+  </Box>
+);
+
+const NavItem = ({ route, icon, children }) => {
+  const color = useColorModeValue('gray.600', 'gray.300');
+
+  return (
+    <NavLink to={route}>
+
+    <Flex
+      align="center"
+      px="4"
+      py="3"
+      cursor="pointer"
+      role="group"
+      fontWeight="semibold"
+      transition=".15s ease"
+      color={useColorModeValue('inherit', 'gray.400')}
+      _hover={{
+        bg: useColorModeValue('gray.200', 'gray.900'),
+        color: useColorModeValue('gray.900', 'gray.200')
+      }}
+    >
+        {icon && (
+          <Icon
+            mx="2"
+            boxSize="4"
+            _groupHover={{
+              color: color
+            }}
+            as={icon}
+          />
+        )}
+        {children}
+    </Flex>
+      </NavLink>
+  );
+};
+
+const NavItemGroup = ({ title, children }) => (
+  <>
+    <Flex px="4" py="2" align="center" color="gray.500" fontSize="sm">
+      <Text>{title}</Text>
+    </Flex>
+    {children}
+  </>
+);

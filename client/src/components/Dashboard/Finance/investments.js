@@ -56,7 +56,7 @@ export const Balances = ({ company }) => {
   }, []);
 
     const hoverStyle = {
-      background: colorMode === "dark" ? "#2d2f38" : "#e7eee2",
+      background: colorMode === "dark" ? "gray.700" : "#e7eee2",
       cursor: "pointer",
       opacity: "0.9",
     };
@@ -67,15 +67,16 @@ export const Balances = ({ company }) => {
 
     const cardProps = {
       borderWidth: "1.2px",
-      borderColor: colorMode === "dark" ? "gray.900" : "gray.200",
+      borderColor: colorMode === "dark" ? "gray.600" : "gray.200",
       _hover: hoverStyle,
-      background: colorMode === "dark" ? "#2a2a2" : "#fffffef",
+      background: colorMode === "dark" ? "#1A202C" : "#fffffef",
       style: cardStyle,
+      margin:'20px'
     };
 
     return (
       <>
-      <Card w="400px" h={'200px'} {...cardProps}>
+      <Card w="400px" h={'200px'} {...cardProps} >
         <CardBody w="370px" h={"100%"}>
           <Container display={"flex"} flexDir={"column"} justifyContent={"center"}>
             <Stack

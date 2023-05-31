@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, ChakraProvider, Container, useColorMode } from '@chakra-ui/react';
+import { Box, ChakraProvider,Text, Container, useColorMode } from '@chakra-ui/react';
 import axios from 'axios';
 
 export const Home = () => {
@@ -9,8 +9,7 @@ export const Home = () => {
   const bgColor = colorMode ==='light' ? 'rgb(255, 255, 255)' : '#2A2A2A'
 
   return (
-    <Container bg={bgColor} w={'xl'} h={"xl"}>
-
+    <Container bg={bgColor} w={'100%'} h={"xl"}>
     </Container>
   );
 };

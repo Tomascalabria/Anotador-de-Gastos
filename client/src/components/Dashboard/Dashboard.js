@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useColorModeValue, useColorMode} from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { Balances } from "./Finance/investments";
 import { AuthContext } from "../../Context/AuthContext";
@@ -7,6 +7,7 @@ import cocos_logo from "../../Icons/logo_cocos.svg";
 
 export const Dashboard = () => {
   const { user } = useContext(AuthContext);
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const companies = [
     {
@@ -30,13 +31,14 @@ export const Dashboard = () => {
   return (
     <Flex
       h="100vh"
-      background={{ light: "#f0f0f0", dark: "#2d2f38" }}
-      w="xxl"
+      bg={useColorModeValue('gray.200', '#1A202C')}
+
+      w="xxl%"
       paddingTop="20px"
       display="flex"
       flexDirection="row"
       flexWrap="wrap"
-      justifyContent="space-evenly"
+      justifyContent="center"
     >
       {companies.map((company, index) => (
         <Balances key={index} company={company} />

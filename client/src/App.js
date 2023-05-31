@@ -14,7 +14,7 @@ import { Dashboard } from './components/Dashboard/Dashboard';
 
 export const App = () => {
   const { user } = useContext(AuthContext);
-  const bgColor = useColorModeValue('#fff', '#2A2A2A');
+  const bgColor = useColorModeValue('gray.200', '#1A202C');
 
   return (
     <div className="App" style={{ width: '100%', height: '100%', margin: '0', padding: '0', background: bgColor }}>
