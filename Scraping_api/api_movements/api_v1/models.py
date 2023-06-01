@@ -1,5 +1,5 @@
 from django.db import models
-from Encrypt import EncryptedPasswordField
+from .Encrypt import EncryptedPasswordField,EncryptedModel
 
 class CocosCredentials(models.Model):
     user_id = models.IntegerField()

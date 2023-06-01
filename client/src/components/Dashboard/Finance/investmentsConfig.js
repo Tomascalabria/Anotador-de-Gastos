@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../../../Context/AuthContext';
+import { Box, useColorMode } from '@chakra-ui/react'
 
 export const investmentsConfig = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   const { user } = useContext(AuthContext);
   const username=''
   const company_id='1'
@@ -25,5 +27,11 @@ export const investmentsConfig = () => {
     fetchData();
   }, [user]);
 
-  return <div>investmentsConfig</div>;
+  return (
+<Box w={'80%'} bg={useColorMode('gray.100', 'gray.800')} >
+
+</Box>
+  
+    )
+
 };

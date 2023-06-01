@@ -54,11 +54,16 @@ res.status===201?setTimeout(() => {
             sm: '8',
         }}
         >
-        <Heading size={useBreakpointValue({
-            base: 'm',
-            md: 'xl',
-        })} textAlign={'center'} marginTop={'-2em'} >Registrate</Heading>
-        <Stack spacing="8">
+    <Heading
+        size={useBreakpointValue({
+          base: 'xl',
+          md: '2xl',
+        })}
+        textAlign="center"
+        marginTop="-2em"
+        style={{ fontSize: '2rem' }}
+      > Registrate</Heading>      
+  <Stack spacing="8">
         <Stack spacing="6">
         
           <Stack
@@ -66,12 +71,12 @@ res.status===201?setTimeout(() => {
                 base: '2',
                 md: '3',
             }}
-            textAlign="center"
+            marginTop={'9px'}
             >
-           
-            <HStack spacing="1" justify="center">
-              <Text color="muted">Ya tenes cuenta?</Text>
-             <Link to='/login' > <Button variant="link" colorScheme="blue">
+             
+              <HStack spacing="1" justify="center"  >
+              <Text color="muted" marginTop={'9px'}>Ya tenes cuenta?</Text>
+             <Link to='/login' > <Button marginTop={'9px'} variant="link" colorScheme="blue">
                 Logueate ashe pa
               </Button></Link>
             </HStack>

@@ -3,7 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
-
+from Iol import Iol
 import time
 from tabulate import tabulate
 from Driver import Driver
@@ -130,3 +130,6 @@ class Cocos:
         
         return response
 
+driver=Driver()
+invertir=Iol(driver,'totocalabria.tc@gmail.com','M.b)EwW$?zC4T9.')
+invertir.obtenerBalance()

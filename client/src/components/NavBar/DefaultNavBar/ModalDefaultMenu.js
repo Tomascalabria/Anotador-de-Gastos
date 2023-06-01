@@ -13,7 +13,8 @@ import {
   Flex,
   ButtonGroup,
   Text,
-  Container
+  Container,
+  useColorModeValue
 } from "@chakra-ui/react";
 import { FiMenu } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -21,12 +22,7 @@ import { Link } from "react-router-dom";
 export const ModalDefaultMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-
-  const expenses = [
-    { name: 'Crear Gasto', index: 0, route: '/gastos/crear' },
-    { name: 'Ver gastos', index: 1, route: '/gastos/ver' },
-    { name: 'Agregar amigos', index: 2, route: '/gastos/agregarAmigos' }
-  ];
+  const bg=useColorModeValue('gray.100', 'gray.800')
 
   return (
     <>
@@ -50,11 +46,11 @@ export const ModalDefaultMenu = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader display="inline-flex" w="lg">
+          <DrawerHeader display="inline-flex" w="lg" background={bg}>
             <Text>Menu de Inicio</Text>
           </DrawerHeader>
 
-          <DrawerBody display="flex" flexDir="column" height="100%" alignItems="center">
+          <DrawerBody display="flex" flexDir="column" height="100%" alignItems="center"background={bg}> 
             <Flex flexDir="column" align="center" justifyContent="space-between" marginTop="2rem" width="100%" h="40%" alignItems="center">
               <ButtonGroup justifyContent="center" variant="link" spacing="8">
                 <Link to="/">Inicio</Link>
@@ -77,7 +73,6 @@ export const ModalDefaultMenu = () => {
               </ButtonGroup>
             </Flex>
           </DrawerBody>
-          <DrawerFooter></DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>

@@ -12,7 +12,7 @@ ReactDOM.render(
     <BrowserRouter>
       <AuthContextProvider>
         <ExpensesContextProvider>
-        <ChakraProvider theme={theme}>
+        <ChakraProvider  >
             <ColorModeScript initialColorMode={'system'} />         
                 <App />
           </ChakraProvider>

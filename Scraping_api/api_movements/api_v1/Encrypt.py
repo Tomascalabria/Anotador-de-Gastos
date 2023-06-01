@@ -23,16 +23,10 @@ class EncryptedPasswordField(models.CharField):
         return value
 
 class EncryptedModel(models.Model):
-    # Other fields in your model
-    
-    # Example fields using the EncryptedPasswordField
-    cocos_password = EncryptedPasswordField(blank=True, null=True)
-    IoL_password = EncryptedPasswordField(blank=True, null=True)
-    
-    # Other fields in your model
-
+    cocos_password = EncryptedPasswordField(max_length=100, blank=True, null=True)
+    IoL_password = EncryptedPasswordField(max_length=100, blank=True, null=True)
+  
     def save(self, *args, **kwargs):
-        # Decrypt the encrypted fields before saving
         self.cocos_password = self.cocos_password.decrypt()
         self.IoL_password = self.IoL_password.decrypt()
 

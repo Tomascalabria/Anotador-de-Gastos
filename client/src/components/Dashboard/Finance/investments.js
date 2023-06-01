@@ -56,7 +56,7 @@ export const Balances = ({ company }) => {
   }, []);
 
     const hoverStyle = {
-      background: colorMode === "dark" ? "gray.700" : "#e7eee2",
+      background: colorMode === "dark" ? "purple.900" : "#e7eee2",
       cursor: "pointer",
       opacity: "0.9",
     };
@@ -69,7 +69,7 @@ export const Balances = ({ company }) => {
       borderWidth: "1.2px",
       borderColor: colorMode === "dark" ? "gray.600" : "gray.200",
       _hover: hoverStyle,
-      background: colorMode === "dark" ? "#1A202C" : "#fffffef",
+      background: colorMode === "dark" ? "#242e40" : "#fffffef",
       style: cardStyle,
       margin:'20px'
     };

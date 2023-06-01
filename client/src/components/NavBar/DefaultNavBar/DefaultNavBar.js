@@ -39,7 +39,7 @@ export const DefaultNavBar = () => {
     >
       <Box
         as="nav"
-        bg={useColorModeValue('background', 'dark.background')}
+        bg={useColorModeValue('gray.100', 'gray.800')}
         w="100%"
         justifyContent="center"
         display="inline-flex"

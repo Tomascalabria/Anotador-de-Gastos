@@ -53,10 +53,18 @@ export const Login = () => {
       }}
     >
 
-      <Heading size={useBreakpointValue({
-                base: 'm',
-                md: 'xl',
-              })} textAlign={'center'} marginTop={'-2em'} >Logueate</Heading>
+<Heading
+  size={useBreakpointValue({
+    base: 'xl',
+    md: '2xl',
+  })}
+  textAlign="center"
+  marginTop="-2em"
+  style={{ fontSize: '2rem',}}
+>
+  Logueate
+</Heading>
+
       <Stack spacing="8">
         <Stack spacing="6">
         
@@ -66,11 +74,12 @@ export const Login = () => {
               md: '3',
             }}
             textAlign="center"
+            marginTop={'9px'}
           >
            
-            <HStack spacing="1" justify="center">
-              <Text color="muted">Todavia no tenes cuenta?</Text>
-             <Link to='/register' > <Button variant="link" colorScheme="blue">
+            <HStack spacing="1" justify="center"  >
+              <Text color="muted" marginTop={'9px'}>Todavia no tenes cuenta?</Text>
+             <Link to='/register'  > <Button marginTop={'9px'} variant="link" colorScheme="blue">
                 Registrate ashe pa
               </Button></Link>
             </HStack>

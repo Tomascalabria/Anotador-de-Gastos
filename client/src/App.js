@@ -14,10 +14,9 @@ import { Dashboard } from './components/Dashboard/Dashboard';
 
 export const App = () => {
   const { user } = useContext(AuthContext);
-  const bgColor = useColorModeValue('gray.200', '#1A202C');
-
+  const bg=useColorModeValue('gray.100', 'gray.800')
   return (
-    <div className="App" style={{ width: '100%', height: '100%', margin: '0', padding: '0', background: bgColor }}>
+    <div className="App" style={{ width: '100%', height: '100%', margin: '0', padding: '0', background: bg }}>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />

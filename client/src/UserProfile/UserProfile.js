@@ -1,66 +1,53 @@
 import { Button, useDisclosure,Avatar ,Drawer,DrawerOverlay,DrawerContent,DrawerHeader,DrawerBody,DrawerFooter,DrawerCloseButton,
   Text,
   FormLabel,
-  Flex,} from '@chakra-ui/react'
+  Flex,
+  Menu,
+  MenuList,
+  MenuGroup,
+  MenuItem,
+  MenuDivider,
+  MenuButton,} from '@chakra-ui/react'
 import React, { useContext, useRef} from 'react'
 import { AuthContext } from '../Context/AuthContext'
+import { logoutProcess } from '../Context/ApiCall'
 import { EmailEditLabel } from './EmailEditLabel'
 // import { FileUpload } from './ProfileImageEdit.js/FileUpload'
 import { ImageEditModal } from './ProfileImageEdit.js/ImageEditModal'
 import {  UsernameEditLabel } from './UsernameEditLabel'
+import {  useNavigate } from 'react-router'
 
 export const UserProfile = () => {
-    const {user} =useContext(AuthContext)
+    const {user,dispatch} =useContext(AuthContext)
+    const Navigate=useNavigate()
+
     console.log(user.userInfo)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = useRef()
     // const email=useRef()
     // const username=useRef()
+    const handleLogout=()=>{
+      logoutProcess(dispatch)
+      Navigate('/')
+  }
       return (
         <>
-    <Avatar name={user.username}src={user.userInfo.profile_picture} onClick={onOpen} ref={btnRef} cursor='pointer'/>
       
-          <Drawer
-          size={'md'}
-            
-            isOpen={isOpen}
-            placement='right'
-            onClose={onClose}
-            finalFocusRef={btnRef}
-          >
-            <DrawerOverlay />
-            <DrawerContent>
-              <DrawerCloseButton />
-              <DrawerHeader>
-                
-              <Flex marginTop={'3rem'} display={'inline-flex'} w='100%' justifyContent={'space-between'}>
-                <Text>Editar Perfil</Text>
-                <ImageEditModal/>
-                </Flex>
-                </DrawerHeader>
-           
-              <DrawerBody display={'flex'}flexDir='column' w='95' alignContent={'center'} marginTop='5rem' >
-                <Flex display={'inline-flex'} textAlign={'center'}  justifyContent={'space-between'}  alignItems={'center'}>
-               <FormLabel alignItems={'center'}  marginTop={'0.5rem'} fontSize={'md'}>Username: </FormLabel>
-              <UsernameEditLabel/>
-               </Flex>
-
-               <Flex display={'inline-flex'} textAlign={'center'}  justifyContent={'space-between'} marginTop='2rem' alignItems={'center'}>
-               <FormLabel alignItems={'center'} marginTop={'0.5rem'} fontSize={'md'}>Email: </FormLabel>
-              <EmailEditLabel/>
-               
-               </Flex>
          
-              </DrawerBody>
-           
-              <DrawerFooter>
-                <Button variant='outline' mr={3} onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button colorScheme='blue'>Save</Button>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
+      <Menu>
+  <MenuButton as={Avatar} name={user.username} src={user.userInfo.profile_picture} cursor="pointer" />
+  <MenuList>
+    <MenuGroup title="Cuenta">
+      
+      <MenuItem>Mi perfil</MenuItem>
+      <MenuItem>Ajustes</MenuItem>
+    </MenuGroup>
+    <MenuDivider />
+    <MenuGroup title="Sesión">
+      <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
+    </MenuGroup>
+  </MenuList>
+</Menu>
       
         </>
       )
