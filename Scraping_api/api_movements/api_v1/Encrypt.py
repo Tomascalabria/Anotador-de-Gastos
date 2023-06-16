@@ -25,9 +25,3 @@ class EncryptedPasswordField(models.CharField):
 class EncryptedModel(models.Model):
     cocos_password = EncryptedPasswordField(max_length=100, blank=True, null=True)
     IoL_password = EncryptedPasswordField(max_length=100, blank=True, null=True)
-  
-    def save(self, *args, **kwargs):
-        self.cocos_password = self.cocos_password.decrypt()
-        self.IoL_password = self.IoL_password.decrypt()
-
-        super().save(*args, **kwargs)

@@ -130,6 +130,3 @@ class Cocos:
         
         return response
 
-driver=Driver()
-invertir=Iol(driver,'totocalabria.tc@gmail.com','M.b)EwW$?zC4T9.')
-invertir.obtenerBalance()

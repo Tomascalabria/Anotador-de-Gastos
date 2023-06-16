@@ -43,7 +43,7 @@ export const UserProfile = () => {
       <MenuItem>Ajustes</MenuItem>
     </MenuGroup>
     <MenuDivider />
-    <MenuGroup title="Sesión">
+    <MenuGroup title="">
       <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
     </MenuGroup>
   </MenuList>

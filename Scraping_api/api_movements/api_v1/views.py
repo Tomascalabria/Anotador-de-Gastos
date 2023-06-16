@@ -1,32 +1,38 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.http import request
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api_v1.serializers import BalanceSerializer, HoldingSerializer, BuySellMovementSerializer, DepositExtractionMovementSerializer,CocosCredentialsSerializer,IoLCredentialsSerializer
-from api_v1.models import Balance, Holding, BuySellMovement, DepositExtractionMovement  # Import the models
+from api_v1.serializers import (
+    BalanceSerializer,
+    HoldingSerializer,
+    BuySellMovementSerializer,
+    DepositExtractionMovementSerializer,
+    CocosCredentialsSerializer,
+    IoLCredentialsSerializer,
+    CompanySerializer,
+)
+from api_v1.models import (
+    Balance,
+    Holding,
+    BuySellMovement,
+    DepositExtractionMovement,
+    CocosCredentials,
+    IoLCredentials,
+    Company,
+)
 from Cocos import Cocos
 from Driver import Driver
 from Iol import Iol
-from api_v1.models import CocosCredentials, IoLCredentials
-
-
 from rest_framework.exceptions import NotFound
+
 
 class CredentialsView(APIView):
     def post(self, request, company_id):
-        if company_id == '1':
-            credentials = CocosCredentials.objects.filter(company_id=company_id).first()
-            serializer = CocosCredentialsSerializer(credentials, data=request.data)
-        elif company_id == '2':
-            credentials = IoLCredentials.objects.filter(company_id=company_id).first()
-            serializer = IoLCredentialsSerializer(credentials, data=request.data)
+        if company_id == '1' or company_id == 1:
+            serializer = CocosCredentialsSerializer(data=request.data)
+        elif company_id == '2' or company_id == 2:
+            serializer = IoLCredentialsSerializer(data=request.data)
         else:
-            return Response({'error': 'Company  id not supported'}, status=400)
-
-        if not credentials:
-            raise NotFound("Credentials not found")
+            return Response({'error': 'Company ID not supported'}, status=400)
 
         if serializer.is_valid():
             serializer.save(company_id=company_id)
@@ -34,19 +40,35 @@ class CredentialsView(APIView):
         else:
             return Response(serializer.errors, status=400)
 
-class UserCredentialsView(APIView):
-    def get(self, company_id):
-        if company_id == '1':
-            credentials = get_object_or_404(CocosCredentials, company_id=company_id)
-        elif company_id == '2':
-            credentials = get_object_or_404(IoLCredentials, company_id=company_id)
-        else:
-            return JsonResponse({'error': 'Company type not supported'}, status=400)
 
-        return JsonResponse({
+class UserCredentialsView(APIView):
+    def get(self, request, company_id, user_id):
+        if company_id == 1 or company_id == '1':
+            credentials = get_object_or_404(CocosCredentials, company_id=company_id, user_id=user_id)
+        elif company_id == 2 or company_id == '2':
+            credentials = get_object_or_404(IoLCredentials, company_id=company_id, user_id=user_id)
+        else:
+            return Response({'error': 'Company type not supported'}, status=400)
+
+        return Response({
             'username': credentials.username,
-            'password': credentials.password,  # Note: This is the encrypted password
+            'password': credentials.password,
+            # Password field automatically decrypted by EncryptedPasswordField
         })
+
+    def post(self, request, company_id, user_id):
+        if company_id == 1 or company_id == '1':
+            serializer = CocosCredentialsSerializer(data=request.data)
+        elif company_id == 2 or company_id == '2':
+            serializer = IoLCredentialsSerializer(data=request.data)
+        else:
+            return Response({'error': 'Company ID not supported'}, status=400)
+
+        if serializer.is_valid():
+            serializer.save(company_id=company_id, user_id=user_id)
+            return Response(serializer.data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
 
 
 class BalanceView(APIView):
@@ -80,7 +102,7 @@ class BalanceView(APIView):
 
 
 class HoldingView(APIView):
-    def get(self, request):
+    def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
 
@@ -103,10 +125,9 @@ class HoldingView(APIView):
 
         return Response(serializer.data)
 
-# Similarly, you can create the views for BuySellMovement and DepositExtractionMovement
 
 class BuySellMovementView(APIView):
-    def get(self, request):
+    def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
         driver = Driver()
@@ -129,8 +150,10 @@ class BuySellMovementView(APIView):
         serializer = BuySellMovementSerializer(buy_sell_movements_data['BuySellMovements'], many=True)
 
         return Response(serializer.data)
+
+
 class DepositExtractionMovementView(APIView):
-    def get(self, request):
+    def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
         driver = Driver()
@@ -153,3 +176,39 @@ class DepositExtractionMovementView(APIView):
         serializer = DepositExtractionMovementSerializer(deposit_extraction_movements_data['DepositExtractionMovements'], many=True)
 
         return Response(serializer.data)
+
+
+class CompanyView(APIView):
+    def get(self, request):
+        companies = Company.objects.all()
+        serializer = CompanySerializer(companies, many=True)
+        return Response(serializer.data)
+
+
+class CompanyCreationView(APIView):
+    def post(self, request):
+        serializer = CompanySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
+class CompanyDetailView(APIView):
+    def get(self, request, name):
+        company = get_object_or_404(Company, name=name)
+        serializer = CompanySerializer(company)
+        return Response(serializer.data)
+
+    def put(self, request, name):
+        company = get_object_or_404(Company, name=name)
+        serializer = CompanySerializer(company, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+    def delete(self, request, name):
+        company = get_object_or_404(Company, name=name)
+        company.delete()
+        return Response(status=204)
