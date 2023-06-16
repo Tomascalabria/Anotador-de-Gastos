@@ -3,7 +3,7 @@
 # P I A N L
 
 Este es un proyecto  que te permite llevar un registro y control de tus gastos personales y finanzas. La aplicación te permite ingresar y gestionar tus gastos, así como también compartir gastos con tus amigos y revisar los movimientos de tus cuentas bancarias.
-La aplicación incluye una función de web scraping que permite obtener los movimientos, balances y posiciones de tu cuenta en Cocos Capital e Invertir Online. Esto te permite tener una visión general de tus finanzas en un solo lugar, centralizando la información de tus cuentas bancarias.
+La aplicación incluye una función de web scraping que permite obtener los movimientos, balances y posiciones de tu cuenta en: Cocos Capital, Invertir Online, Santander Rio, BBVA, entre otros! Esto te permite tener una visión general de tus finanzas en un solo lugar, centralizando la información de tus cuentas bancarias.
 
 
 ### Funcionalidades Principales*
@@ -11,14 +11,14 @@ La aplicación incluye una función de web scraping que permite obtener los movi
 * Agregar, editar y eliminar gastos personales.
 * Compartir gastos con amigos y llevar un registro compartido.
 * Revisar movimientos y balances de tus cuentas bancarias.
-* Centralizar múltiples cuentas bancarias en un solo lugar mediante la implementación de web scraping en el sitio web de Cocos Capital.
+* Centralizar múltiples cuentas bancarias en un solo lugar mediante la implementación de web scraping en el sitio web deseado.
 ### Tecnologías Utilizadas
 * Frontend: React JS, Chakra UI, FontAwesome.
 * Backend: Express, Crypto-js, WebToken, Cors, Django, Selnium.
 * Base de Datos: MongoDB (No Relacional), PostGreSQL.
 
 ##### *Instalación*
-Clona este repositorio en tu máquina local.
+Clona este repositorio en tu máquina local. 
 
 ```python
 Git clone https://github.com/Tomascalabria/Anotador-de-Gastos.git
