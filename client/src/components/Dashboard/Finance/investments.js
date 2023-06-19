@@ -43,7 +43,7 @@
     
     const fetchData = async (username, password) => {
       try {
-        const response = await axios.post(`http://127.0.0.1:8000/balance/${id}/`, {
+        const response = await axios.post(`http://127.0.0.1:8000/companies/${user.userInfo._id}/`, {
           user_id: user._id,
           company_id: id,
           username,
@@ -55,7 +55,7 @@
         console.log(error);
       }
     };
-    
+    console.log(logo)
     useEffect(() => {
       fetchCredentials();
     }, []);
@@ -94,6 +94,7 @@
                   justifyContent: "flex-start",
                 }}
               >
+
                 <Img
                   src={logo}
                   color={colorMode === "dark" ? "dark.text" : "light.text"}
@@ -111,10 +112,10 @@
           <Divider />
           <CardFooter display="inline-flex" w="100%" justifyContent="space-between" alignItems="center">
             <Text fontSize="sm" color="gray.500">
-              Ult. Actulización: {lastUpdated}
+              Ult. Actualización: {lastUpdated}
             </Text>
             <Button size="sm" title="Refrescar balances" background="transparent" onClick={fetchData} colorScheme="blue">
-              <Icon as={FaSyncAlt} boxSize={4} color="blue.500" />
+              <Icon alignContent={'center'} justifyContent={'center'} display={'flex'}  as={FaSyncAlt} boxSize={4} color="blue.500" marginBottom={'5px'} />
             </Button>
           </CardFooter>
         </Card>

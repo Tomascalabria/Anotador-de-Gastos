@@ -26,7 +26,7 @@ import { BsFolder2, BsCalendarCheck } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
 import { RiFlashlightFill } from 'react-icons/ri';
 import {Home} from '../../Home/Home'
-import { UserProfile } from '../../../UserProfile/UserProfile';
+import { UserProfile } from '../../../UserProfile/UserOptionsTab';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Link, NavLink } from 'react-router-dom';
 

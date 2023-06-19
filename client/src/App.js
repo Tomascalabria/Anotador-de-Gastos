@@ -7,10 +7,11 @@ import { AuthContext, AuthContextProvider } from './Context/AuthContext';
 import { ExpensesList } from './components/ItemList/ExpensesList';
 import { CreateExpense } from './components/CreateExpense/CreateExpense';
 import { Home } from './components/Home/Home';
-import { UserProfile } from './UserProfile/UserProfile';
+import { UserProfile } from './UserProfile/UserOptionsTab';
 import { AddFriends } from './components/AddFriends/AddFriends';
 import { useContext } from 'react';
 import { Dashboard } from './components/Dashboard/Dashboard';
+import Profile from './UserProfile/ProfileConfig/ProfileConfig';
 
 export const App = () => {
   const { user } = useContext(AuthContext);
@@ -41,7 +42,7 @@ export const App = () => {
         />
         <Route
           path="/profile"
-          element={user ? <UserProfile /> : <Navigate to="/login" replace />}
+          element={user ? <Profile /> : <Navigate to="/login" replace />}
         />
         {/* If the user is not logged in, redirect to the login page */}
         <Route path="*" element={!user ? <Navigate to="/login" replace /> : <Navigate to="/" replace />} />

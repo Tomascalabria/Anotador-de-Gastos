@@ -6,8 +6,7 @@ from api_v1.serializers import (
     HoldingSerializer,
     BuySellMovementSerializer,
     DepositExtractionMovementSerializer,
-    CocosCredentialsSerializer,
-    IoLCredentialsSerializer,
+    CredentialsSerializer,
     CompanySerializer,
 )
 from api_v1.models import (
@@ -15,8 +14,7 @@ from api_v1.models import (
     Holding,
     BuySellMovement,
     DepositExtractionMovement,
-    CocosCredentials,
-    IoLCredentials,
+    Credentials,
     Company,
 )
 from Cocos import Cocos
@@ -27,13 +25,7 @@ from rest_framework.exceptions import NotFound
 
 class CredentialsView(APIView):
     def post(self, request, company_id):
-        if company_id == '1' or company_id == 1:
-            serializer = CocosCredentialsSerializer(data=request.data)
-        elif company_id == '2' or company_id == 2:
-            serializer = IoLCredentialsSerializer(data=request.data)
-        else:
-            return Response({'error': 'Company ID not supported'}, status=400)
-
+        serializer = CredentialsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(company_id=company_id)
             return Response(serializer.data, status=201)
@@ -43,13 +35,7 @@ class CredentialsView(APIView):
 
 class UserCredentialsView(APIView):
     def get(self, request, company_id, user_id):
-        if company_id == 1 or company_id == '1':
-            credentials = get_object_or_404(CocosCredentials, company_id=company_id, user_id=user_id)
-        elif company_id == 2 or company_id == '2':
-            credentials = get_object_or_404(IoLCredentials, company_id=company_id, user_id=user_id)
-        else:
-            return Response({'error': 'Company type not supported'}, status=400)
-
+        credentials = get_object_or_404(Credentials, company_id=company_id, user_id=user_id)
         return Response({
             'username': credentials.username,
             'password': credentials.password,
@@ -57,13 +43,7 @@ class UserCredentialsView(APIView):
         })
 
     def post(self, request, company_id, user_id):
-        if company_id == 1 or company_id == '1':
-            serializer = CocosCredentialsSerializer(data=request.data)
-        elif company_id == 2 or company_id == '2':
-            serializer = IoLCredentialsSerializer(data=request.data)
-        else:
-            return Response({'error': 'Company ID not supported'}, status=400)
-
+        serializer = CredentialsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(company_id=company_id, user_id=user_id)
             return Response(serializer.data, status=201)
@@ -195,10 +175,16 @@ class CompanyCreationView(APIView):
 
 
 class CompanyDetailView(APIView):
-    def get(self, request, name):
-        company = get_object_or_404(Company, name=name)
-        serializer = CompanySerializer(company)
+    def get(self, request, user_id):
+        # Retrieve the credentials for the specified user_id
+        credentials = Credentials.objects.filter(user_id=user_id)
+
+        # Retrieve the companies associated with the credentials
+        companies = Company.objects.filter(credentials__in=credentials)
+
+        serializer = CompanySerializer(companies, many=True)
         return Response(serializer.data)
+
 
     def put(self, request, name):
         company = get_object_or_404(Company, name=name)

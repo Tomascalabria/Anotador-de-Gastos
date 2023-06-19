@@ -6,8 +6,14 @@ import { AuthContextProvider } from './Context/AuthContext';
 import { ExpensesContextProvider } from './Context/ExpensesContext/ExpensesContext';
 import { App } from './App';
 import theme from './ThemeConfig/theme';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-ReactDOM.render(
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
+
   <React.StrictMode>
     <BrowserRouter>
       <AuthContextProvider>

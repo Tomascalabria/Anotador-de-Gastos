@@ -11,11 +11,8 @@ import { Button, useDisclosure,Avatar ,Drawer,DrawerOverlay,DrawerContent,Drawer
 import React, { useContext, useRef} from 'react'
 import { AuthContext } from '../Context/AuthContext'
 import { logoutProcess } from '../Context/ApiCall'
-import { EmailEditLabel } from './EmailEditLabel'
-// import { FileUpload } from './ProfileImageEdit.js/FileUpload'
-import { ImageEditModal } from './ProfileImageEdit.js/ImageEditModal'
-import {  UsernameEditLabel } from './UsernameEditLabel'
 import {  useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 export const UserProfile = () => {
     const {user,dispatch} =useContext(AuthContext)
@@ -39,7 +36,7 @@ export const UserProfile = () => {
   <MenuList>
     <MenuGroup title="Cuenta">
       
-      <MenuItem>Mi perfil</MenuItem>
+      <Link to={'/Profile'}><MenuItem>Mi perfil</MenuItem></Link>
       <MenuItem>Ajustes</MenuItem>
     </MenuGroup>
     <MenuDivider />

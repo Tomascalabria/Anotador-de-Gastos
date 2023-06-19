@@ -13,11 +13,9 @@ export const Dashboard = () => {
   const fetchCompanies = async (id) => {
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/companies/${user.userInfo._id}`, {
-        headers: {
-          user_id: user.userInfo._id,
-        }
-      });
+      const response = await axios.get(`http://127.0.0.1:8000/companies/${user.userInfo._id}/`
+      );
+      console.log(response.data)
       setCompanies(response.data);
     } catch (error) {
       console.log(error);

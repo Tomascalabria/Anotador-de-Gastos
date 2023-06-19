@@ -1,15 +1,9 @@
 from rest_framework import serializers
-from api_v1.models import Balance, Holding, Company, BuySellMovement, DepositExtractionMovement, CocosCredentials, IoLCredentials
-
-class CocosCredentialsSerializer(serializers.ModelSerializer):
+from api_v1.models import Balance, Holding, Company, BuySellMovement, DepositExtractionMovement, Credentials
+class CredentialsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CocosCredentials
-        fields = '__all__'
-
-class IoLCredentialsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = IoLCredentials
-        fields = '__all__'
+        model = Credentials
+        fields = ('user_id', 'company', 'username', 'password')
 
 class BalanceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,6 +26,7 @@ class DepositExtractionMovementSerializer(serializers.ModelSerializer):
         fields = ('ticker', 'operation', 'type', 'day', 'quantity', 'total_movement', 'status')
 
 class CompanySerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Company
         fields = ['id', 'name', 'type', 'logo', 'about']
