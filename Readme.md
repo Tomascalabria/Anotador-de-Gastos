@@ -5,7 +5,7 @@
 
 
 Este es un proyecto  que te permite llevar un registro y control de tus gastos personales y finanzas. La aplicación te permite ingresar y gestionar tus gastos, así como también compartir gastos con tus amigos y revisar los movimientos de tus cuentas bancarias.
-La aplicación incluye una función de web scraping que permite obtener los movimientos, balances y posiciones de tu cuenta en: Cocos Capital, Invertir Online, Santander Rio, BBVA, entre otros! Esto te permite tener una visión general de tus finanzas en un solo lugar, centralizando la información de tus cuentas bancarias.
+La aplicación incluye una función de web scraping que permite obtener los movimientos, balances y posiciones de tu cuenta en: **Cocos Capital, Invertir Online, Santander Rio, BBVA**, entre otros! Esto te permite tener una visión general de tus finanzas en un solo lugar, centralizando la información de tus cuentas bancarias.
 
 
 ### Funcionalidades Principales*
