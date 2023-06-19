@@ -61,7 +61,7 @@
     }, []);
 
       const hoverStyle = {
-        background: colorMode === "dark" ? "purple.900" : "#e7eee2",
+        background: colorMode === "dark" ? "purple.900" : "#b3c0e6db",
         cursor: "pointer",
         opacity: "0.9",
       };

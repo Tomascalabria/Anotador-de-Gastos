@@ -19,6 +19,9 @@ const ProfileInformation = ({
   // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");
   return (
+    <Flex background={useColorModeValue("#e1e8fcdb", "gray.700")}
+    boxShadow= 'rgba(0, 0, 0, 0.02) 0px 3.5px 5.5px'
+    borderRadius=' 15px' >
     <Card p='16px' my={{ sm: "24px", xl: "0px" }}>
       <CardHeader p='12px 5px' mb='12px'>
         <Text fontSize='lg' color={textColor} fontWeight='bold'>
@@ -96,6 +99,7 @@ const ProfileInformation = ({
         </Flex>
       </CardBody>
     </Card>
+    </Flex>
   );
 };
 

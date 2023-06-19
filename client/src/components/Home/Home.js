@@ -5,10 +5,10 @@ import axios from 'axios';
 export const Home = () => {
 
   // Assign the background color based on colorMode outside of the JSX expression
-  const bg=useColorModeValue('gray.100', 'gray.800')
+  
 
   return (
-    <Container bg={bg} w={'100%'} h={"xl"}>
+    <Container background={useColorModeValue('gray.100', 'gray.800')} minWidth={'100%'} w={'100%'} h={"xl"}>
 
     </Container>
   );

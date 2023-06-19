@@ -39,8 +39,17 @@ const Projects = ({ title, description }) => {
     fetchCompanies();
   }, []);
   const textColor = useColorModeValue("gray.700", "white");
+const hoverStyle={
+  background:useColorModeValue("#b3c0e6db", "#b3c0e6db"),
+  textColor: useColorModeValue("black", "white")
+
+}
 
   return (
+
+    <Flex marginTop={'50px'} background={useColorModeValue("#e1e8fcdb", "gray.700")}
+    boxShadow= 'rgba(0, 0, 0, 0.02) 0px 3.5px 5.5px'
+    borderRadius=' 15px' minWidth={'100%'} >
     <Card p='16px' my='24px'>
       <CardHeader p='12px 5px' mb='12px'>
         <Flex direction='column'>
@@ -72,6 +81,7 @@ const Projects = ({ title, description }) => {
           <Button
             p='0px'
             bg='transparent'
+            _hover={hoverStyle}
             color='gray.500'
             marginLeft={'20px'}
             border='1px solid lightgray'
@@ -88,6 +98,7 @@ const Projects = ({ title, description }) => {
         </Grid>
       </CardBody>
     </Card>
+    </Flex>
   );
 };
 

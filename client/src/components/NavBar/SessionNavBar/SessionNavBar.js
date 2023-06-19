@@ -36,7 +36,7 @@ export const  Index=()=> {
 
 
   return (
-    <Box as="section" bg={useColorModeValue('gray.100', 'gray.800')} marginLeft={'-20px'} h={'100%'} w={'100%' }>
+    <Box as="section" bg={useColorModeValue('gray.100', 'gray.800')} borderBottom={`solid 1px ${useColorModeValue('gray', 'white')}`} marginLeft={'-20px'} h={'100%'} w={'100%' }>
       <SidebarContent display={{ base: 'none', md: 'unset' }}   />
       <Drawer isOpen={isOpen} onClose={onClose} is placement="left" >
         <DrawerOverlay />

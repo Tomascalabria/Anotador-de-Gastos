@@ -25,9 +25,10 @@ function Profile() {
     <Flex w={'80%'}  direction="column">
       <Header 
         backgroundProfile={bgProfile}
-        avatarImage={user.userInfo.profile_picture}
+        profile_image={user.userInfo.profile_image}
         name={user.userInfo.username}
         email={user.userInfo.email}
+    
         tabs={[
 
           {

@@ -10,6 +10,9 @@ const PlatformSettings = ({ title, subtitle1, subtitle2 }) => {
   // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");
   return (
+    <Flex background={useColorModeValue("#e1e8fcdb", "gray.700")}
+    boxShadow= 'rgba(0, 0, 0, 0.02) 0px 3.5px 5.5px'
+    borderRadius=' 15px' >
     <Card p='16px'>
       <CardHeader p='12px 5px' mb='12px'>
         <Text fontSize='lg' color={textColor} fontWeight='bold'>
@@ -39,6 +42,12 @@ const PlatformSettings = ({ title, subtitle1, subtitle2 }) => {
             Notificarme cuando este por vencer un pago
             </Text>
           </Flex>
+          <Flex align='center' mb='20px'>
+            <Switch colorScheme='teal' me='10px' />
+            <Text   fontSize='md' color='gray.500'  width='220px' fontWeight='400'>
+            Notificarme cuando haya un movimiento extraño
+            </Text>
+          </Flex>
           <Text
             fontSize='sm'
             color='gray.500'  width='220px'
@@ -49,15 +58,10 @@ const PlatformSettings = ({ title, subtitle1, subtitle2 }) => {
           <Flex align='center' mb='20px' w={'200px'}>
             <Switch colorScheme='teal' me='10px' />
             <Text   fontSize='md' color='gray.500'  width='220px' fontWeight='400'>
-            Notificarme cuando varie el precio de una acción mas de 5%
+            Notificarme cuando el precio de una acción varie mas de un 5%
             </Text>
           </Flex>
-          <Flex align='center' mb='20px'>
-            <Switch colorScheme='teal' me='10px' />
-            <Text   fontSize='md' color='gray.500'  width='220px' fontWeight='400'>
-            Notificarme cuando haya un movimiento extraño
-            </Text>
-          </Flex>
+       
           <Flex align='center' mb='20px'>
             <Switch colorScheme='teal' me='10px' />
             <Text   fontSize='md' color='gray.500'  width='220px' fontWeight='400'>
@@ -67,6 +71,7 @@ const PlatformSettings = ({ title, subtitle1, subtitle2 }) => {
         </Flex>
       </CardBody>
     </Card>
+    </Flex>
   );
 };
 

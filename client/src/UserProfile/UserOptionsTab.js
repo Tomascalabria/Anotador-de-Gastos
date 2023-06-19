@@ -32,7 +32,7 @@ export const UserProfile = () => {
       
          
       <Menu>
-  <MenuButton as={Avatar} name={user.username} src={user.userInfo.profile_picture} cursor="pointer" />
+  <MenuButton as={Avatar} name={user.username} src={user.userInfo.profile_image} cursor="pointer" />
   <MenuList>
     <MenuGroup title="Cuenta">
       

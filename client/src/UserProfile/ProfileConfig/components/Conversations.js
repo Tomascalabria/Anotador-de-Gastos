@@ -40,6 +40,9 @@ const {user }=useContext(AuthContext)
   },[])
 
   return (
+    <Flex background={useColorModeValue("#e1e8fcdb", "gray.700")}
+    boxShadow= 'rgba(0, 0, 0, 0.02) 0px 3.5px 5.5px'
+    borderRadius=' 15px' >
     <Card p='16px'>
       <CardHeader p='12px 5px' mb='12px'>
         <Text fontSize='lg' color={textColor} fontWeight='bold'>
@@ -53,7 +56,7 @@ const {user }=useContext(AuthContext)
          <Flex justifyContent='space-between' mb='21px'>
             <Flex align='center'>
               <Avatar 
-              src="https://bit.ly/broken-link"
+              src={friend.profile_image}
               key={friend.friend_id}
                 w='50px'
                 h='50px'
@@ -62,7 +65,7 @@ const {user }=useContext(AuthContext)
               />
               <Flex direction='column'>
                 <Text fontSize='sm' color={textColor} fontWeight='bold'>
-                  {friend.friend_username}
+                  {friend.username}
                 </Text>
                 
               </Flex>
@@ -82,6 +85,7 @@ const {user }=useContext(AuthContext)
   })}
       </CardBody>
     </Card>
+    </Flex>
   );
 };
 

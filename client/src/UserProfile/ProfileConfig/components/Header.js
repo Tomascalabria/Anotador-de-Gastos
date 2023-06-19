@@ -12,10 +12,10 @@ import React from "react";
 const Header = ({
   backgroundHeader,
   backgroundProfile,
-  avatarImage,
   name,
   email,
   tabs,
+  profile_image
 }) => {
   // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");
@@ -32,9 +32,10 @@ const Header = ({
       display='flex'
       flexDirection='column'
       justifyContent='flex-start'
+      
       align='center'>
       <Box
-        bgImage={backgroundHeader}
+background={useColorModeValue("#b3c0e6db", "gray.700")}        
         w='100%'
         h='300px'
         borderRadius='25px'
@@ -64,7 +65,7 @@ const Header = ({
             md: "translateY(110%)",
             lg: "translateY(160%)",
           }}>
-          <Flex
+          <Flex 
             align='flex-start'
             mb={{ sm: "10px", md: "0px" }}
             direction={{ sm: "column", md: "row" }}
@@ -72,12 +73,12 @@ const Header = ({
             textAlign={{ sm: "center", md: "start" }}>
             <Avatar
               me={{ md: "22px" }}
-              src
+              src={profile_image}
               w='80px'
               h='80px'
               borderRadius='15px'
             />
-            <Flex direction='column' maxWidth='100%' my={{ sm: "14px" }}>
+            <Flex direction='column' maxWidth='100%' my={{ sm: "14px" }} >
               <Text
                 fontSize={{ sm: "lg", lg: "xl" }}
                 color={textColor}
@@ -94,10 +95,11 @@ const Header = ({
             </Flex>
           </Flex>
           <Flex
+          
             direction={{ sm: "column", lg: "row" }}
             w={{ sm: "100%", md: "50%", lg: "auto" }}>
             <Button p='0px' bg='transparent' _hover={{ bg: "none" }}>
-              <Flex
+              <Flex 
                 align='center'
                 w={{ sm: "100%", lg: "135px" }}
                 bg='hsla(0,0%,100%,.3)'
@@ -118,7 +120,7 @@ const Header = ({
               </Flex>
             </Button>
             <Button p='0px' bg='transparent' _hover={{ bg: "none" }}>
-              <Flex
+              <Flex 
                 align='center'
                 w={{ lg: "135px" }}
                 borderRadius='15px'
