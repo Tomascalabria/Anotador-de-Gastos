@@ -19,7 +19,7 @@ La aplicación incluye una función de web scraping que permite obtener los movi
 
 ### Tecnologías Utilizadas
 * Frontend: React JS.
-* Backend Django _(Para el scrape)_ NodeJs_(Auth)_.
+* Backend Django _(Para el scrape)_ NodeJs _(Auth)_ .
 * Base de Datos: MongoDB (No Relacional), PostGreSQL.
 
 ##### *Instalación*
