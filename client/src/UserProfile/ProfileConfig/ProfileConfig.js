@@ -1,8 +1,8 @@
 // Chakra imports
 import { Flex, Grid, useColorModeValue } from "@chakra-ui/react";
 import React, { useContext } from "react";
-import { FaCube, FaPenFancy } from "react-icons/fa";
-import { IoDocumentsSharp } from "react-icons/io5";
+import {  FaWallet } from "react-icons/fa";
+import { FaCog } from "react-icons/fa";
 import Conversations from "./components/Conversations";
 import Header from "./components/Header";
 import PlatformSettings from "./components/PlatformSettings";
@@ -29,17 +29,14 @@ function Profile() {
         name={user.userInfo.username}
         email={user.userInfo.email}
         tabs={[
+
           {
-            name: "OVERVIEW",
-            icon: <FaCube w='100%' h='100%' />,
+            name: "Amigxs",
+            icon: <FaCog w='100%' h='100%' />,
           },
           {
-            name: "TEAMS",
-            icon: <IoDocumentsSharp w='100%' h='100%' />,
-          },
-          {
-            name: "PROJECTS",
-            icon: <FaPenFancy w='100%' h='100%' />,
+            name: "Cuentas",
+            icon: <FaWallet w='100%' h='100%' />,
           },
         ]}
       />

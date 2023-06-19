@@ -8,10 +8,6 @@ import {
 } from "@chakra-ui/react";
 // Assets
 
-
-
-
-
 // Custom ././components
 import Card from "./././components/Card/Card";
 import CardBody from "././components/Card/CardBody";
@@ -19,12 +15,12 @@ import CardHeader from "././components/Card/CardHeader";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../../Context/AuthContext";
+import { ReactIcon } from "@chakra-ui/icons";
 
 const Conversations = ({ title }) => {
   const textColor = useColorModeValue("gray.700", "white");
   const [friends,setFriends]=useState([])
 const {user }=useContext(AuthContext)
-const route=''
   const getFriends=async ()=>{
     const friends =await axios.get(`http://localhost:5050/users/${user.userInfo._id}/`,{
       headers:{
@@ -32,7 +28,8 @@ const route=''
       }
     })
     .then((res)=>{
-      setFriends(res.data.userInfo.friends)
+
+      setFriends(res.data.friends)
     })
     .catch((err)=>{
       console.log(err)
@@ -41,7 +38,6 @@ const route=''
   useEffect(()=>{
     getFriends()
   },[])
-  console.log(friends)
 
   return (
     <Card p='16px'>
@@ -52,14 +48,13 @@ const route=''
       </CardHeader>
       <CardBody px='5px'>
     {friends.map((friend)=>{
-
-    
+      return(
         <>
          <Flex justifyContent='space-between' mb='21px'>
             <Flex align='center'>
-              <Avatar key={friend.friend_id}
-
-                // src={friend.profile_picture}
+              <Avatar 
+              src="https://bit.ly/broken-link"
+              key={friend.friend_id}
                 w='50px'
                 h='50px'
                 borderRadius='15px'
@@ -83,6 +78,7 @@ const route=''
             </Button>
           </Flex>
       </>
+      )
   })}
       </CardBody>
     </Card>
