@@ -1,8 +1,7 @@
 
 
 # P I A N L
-<img width="960" alt="image" src="https://github.com/Tomascalabria/Gestor-de-Finanzas/assets/81932784/94d5ae2d-543f-4bb1-ac27-6de3e29e6db5">
-
+<img width="946" alt="image" src="https://github.com/Tomascalabria/Gestor-de-Finanzas/assets/81932784/c0711c19-db94-4c33-888b-b40bd80c850d">
 
 Este es un proyecto  que te permite llevar un registro y control de tus gastos personales y finanzas. La aplicación te permite ingresar y gestionar tus gastos, así como también compartir gastos con tus amigos y revisar los movimientos de tus cuentas bancarias.
 La aplicación incluye una función de web scraping que permite obtener los movimientos, balances y posiciones de tu cuenta en: **Cocos Capital, Invertir Online, Santander Rio, BBVA**, entre otros! Esto te permite tener una visión general de tus finanzas en un solo lugar, centralizando la información de tus cuentas bancarias.
@@ -15,7 +14,7 @@ La aplicación incluye una función de web scraping que permite obtener los movi
 * Revisar movimientos y balances de tus cuentas bancarias.
 * Centralizar múltiples cuentas bancarias en un solo lugar mediante la implementación de web scraping en el sitio web deseado.
 * Panel de configuración para agregar notificaciones a los distintos tipos de movimientos
-<img width="943" alt="image" src="https://github.com/Tomascalabria/Gestor-de-Finanzas/assets/81932784/637398ae-da1e-40fd-a0e9-2047789a7555">
+<img width="960" alt="image" src="https://github.com/Tomascalabria/Gestor-de-Finanzas/assets/81932784/b303623d-a465-4c8e-b74b-4879707e697d">
 
 ### Tecnologías Utilizadas
 * Frontend: React JS.
