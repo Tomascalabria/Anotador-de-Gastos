@@ -15,7 +15,7 @@ La aplicación incluye una función de web scraping que permite obtener los movi
 * Revisar movimientos y balances de tus cuentas bancarias.
 * Centralizar múltiples cuentas bancarias en un solo lugar mediante la implementación de web scraping en el sitio web deseado.
 * Panel de configuración para agregar notificaciones a los distintos tipos de movimientos
-<img width="939" alt="image" src="https://github.com/Tomascalabria/Gestor-de-Finanzas/assets/81932784/37603c9d-e1ab-4597-8b2c-62266c0c5572">
+<img width="943" alt="image" src="https://github.com/Tomascalabria/Gestor-de-Finanzas/assets/81932784/637398ae-da1e-40fd-a0e9-2047789a7555">
 
 ### Tecnologías Utilizadas
 * Frontend: React JS.
