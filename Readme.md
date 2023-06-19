@@ -34,7 +34,7 @@ Ejecuta npm install para instalar las dependencias del proyecto.
 Configura las variables de entorno en un archivo .env según las necesidades del proyecto.
 Ejecuta npm start para iniciar la aplicación en modo de desarrollo.
 
-### Próximas Mejoras*
+### Próximas Mejoras
 * Agregar más sitios bancarios para centralizar todas las cuentas del usuario.
 * Agregar KPI´S para poder tener metricas de rendimiento tanto de cuentas como de gastos.
 * Mejorar la interfaz y la experiencia de usuario.
@@ -42,7 +42,7 @@ Ejecuta npm start para iniciar la aplicación en modo de desarrollo.
 * Añadir notificaciones y recordatorios para pagos y fechas importantes.
 * Integrar métodos de pago y transacciones seguras.
 
-**Contribución
+### Contribución
 
 #### Si deseas contribuir a este proyecto, puedes hacerlo siguiendo estos pasos:
 
