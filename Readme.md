@@ -18,8 +18,8 @@ La aplicación incluye una función de web scraping que permite obtener los movi
 <img width="939" alt="image" src="https://github.com/Tomascalabria/Gestor-de-Finanzas/assets/81932784/37603c9d-e1ab-4597-8b2c-62266c0c5572">
 
 ### Tecnologías Utilizadas
-* Frontend: React JS, Chakra UI, FontAwesome.
-* Backend: Express, Crypto-js, WebToken, Cors, Django, Selnium.
+* Frontend: React JS.
+* Backend Django _(Para el scrape)_ NodeJs_(Auth)_.
 * Base de Datos: MongoDB (No Relacional), PostGreSQL.
 
 ##### *Instalación*
@@ -37,7 +37,7 @@ Ejecuta npm start para iniciar la aplicación en modo de desarrollo.
 ### Próximas Mejoras*
 * Agregar más sitios bancarios para centralizar todas las cuentas del usuario.
 * Agregar KPI´S para poder tener metricas de rendimiento tanto de cuentas como de gastos.
-* Mejorar la interfaz de usuario y la experiencia de usuario.
+* Mejorar la interfaz y la experiencia de usuario.
 * Implementar gráficos y estadísticas para visualizar los gastos y balances.
 * Añadir notificaciones y recordatorios para pagos y fechas importantes.
 * Integrar métodos de pago y transacciones seguras.
