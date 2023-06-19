@@ -41,7 +41,8 @@ Ejecuta npm start para iniciar la aplicación en modo de desarrollo.
 * Implementar gráficos y estadísticas para visualizar los gastos y balances.
 * Añadir notificaciones y recordatorios para pagos y fechas importantes.
 * Integrar métodos de pago y transacciones seguras.
-* Contribución
+
+**Contribución
 
 #### Si deseas contribuir a este proyecto, puedes hacerlo siguiendo estos pasos:
 
