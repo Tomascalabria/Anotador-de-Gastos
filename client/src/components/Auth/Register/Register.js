@@ -1,4 +1,4 @@
-import {Box,Button,Container,FormControl,FormLabel,Heading,HStack,Input,Stack,Alert,AlertDescription,AlertIcon,AlertTitle,Text,useBreakpointValue,Flex,Icon,chakra} from '@chakra-ui/react'
+import {Box,Button,Container,FormControl,FormLabel,Heading,HStack,Input,Stack,Alert,AlertDescription,AlertIcon,AlertTitle,Text,useBreakpointValue,Flex,Icon,chakra, useColorModeValue} from '@chakra-ui/react'
 import axios from 'axios'
 import React,{ useContext, useRef, useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -11,6 +11,7 @@ const [status,setStatus]=useState('')
 const [response,setResponse]=useState('')
 const {isFetching}=useContext(AuthContext)
 
+const bg=useColorModeValue('white', 'gray.800')
 
 const handleChange=()=>{
   console.log ({Username:username.current.value.length})
@@ -43,7 +44,7 @@ res.status===201?setTimeout(() => {
 
     return (
     
-        <Container
+        <Container     background={bg}
         maxW="lg"
         py={{
             base: '12',
@@ -52,8 +53,7 @@ res.status===201?setTimeout(() => {
         px={{
             base: '0',
             sm: '8',
-        }}
-        >
+        }}>
     <Heading
         size={useBreakpointValue({
           base: 'xl',

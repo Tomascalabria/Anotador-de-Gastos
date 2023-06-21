@@ -24,6 +24,12 @@ export const DefaultNavBar = () => {
   });
   const titleColor = useColorModeValue('primary', 'white');
   const { colorMode, toggleColorMode } = useColorMode();
+  
+  const hoverStyle = {
+    background: colorMode === "dark" ? "purple.900" : "#b3c0e6db",
+    cursor: "pointer",
+    opacity: "0.9",
+  };
 
   return (
     <Box
@@ -32,6 +38,7 @@ export const DefaultNavBar = () => {
       display="inline-flex"
       justifyContent="center"
       alignContent={'center'}
+      bg={useColorModeValue('white', 'gray.800')}
       pb={{
         base: '12',
         md: '18',
@@ -39,13 +46,13 @@ export const DefaultNavBar = () => {
     >
       <Box
         as="nav"
-        bg={useColorModeValue('gray.100', 'gray.800')}
+        bg={useColorModeValue('white', 'gray.800')}
         w="100%"
         justifyContent="center"
         display="inline-flex"
         boxShadow={useColorModeValue('sm', 'sm-dark')}
       >
-        <Flex py={{ base: '4', lg: '5' }} w="100%" justifyContent="space-around" alignContent={'center'}>
+        <Flex py={{ base: '4', lg: '5' }}  paddingBottom={'0'}  w="100%" justifyContent="space-around" alignContent={'center'}>
           <Box p="3">
             <Link to="/"><ButtonGroup justifyContent="space-evenly" h={'100%'} display="inline-flex" alignItems="center" alignContent={'center'}><img width={'150px'} height={'150px'} src={icon}></img></ButtonGroup>
                 
@@ -56,14 +63,14 @@ export const DefaultNavBar = () => {
           {isDesktop ? (
             <Flex justifyContent="space-evenly" width="65%" display="inline-flex" alignItems="center" alignContent={'center'}>
               <HStack spacing="12">
-                <Link to="/login">
-                  <Button variant="ghost" style={{ marginLeft: '6em' }}>
+                <Link to="/login" > 
+                  <Button variant="ghost" style={{ marginLeft: '6em' }} _hover={hoverStyle}>
                     Sign in
                   </Button>
                 </Link>
 
                 <Link to="register">
-                  <Button variant="ghost">Sign up</Button>
+                  <Button variant="ghost" _hover={hoverStyle}> Sign up</Button>
                 </Link>
               </HStack>
 

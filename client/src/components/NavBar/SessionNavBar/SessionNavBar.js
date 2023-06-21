@@ -34,17 +34,28 @@ export const  Index=()=> {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
 
+const closeSideBarAfterRouting=()=>{
+  setTimeout(() => {
+    onClose()
+  }, 1000);
+}
 
   return (
-    <Box as="section" bg={useColorModeValue('gray.100', 'gray.800')} borderBottom={`solid 1px ${useColorModeValue('gray', 'white')}`} marginLeft={'-20px'} h={'100%'} w={'100%' }>
-      <SidebarContent display={{ base: 'none', md: 'unset' }}   />
+    <Box as="section" background={useColorModeValue('gray.100', 'gray.800')} borderBottom={`solid 1px ${useColorModeValue('gray', 'white')}`} marginLeft={'0px'} h={'100%'} w={'100%' } justifyContent={'space-between'} alignContent={'center'} display={'flex'}>
+        <IconButton marginLeft={'4px'} marginTop={'5px'} border={`solid 0.1px ${useColorModeValue('black', 'white')}`}
+            aria-label="Menu"
+            onClick={onOpen}
+            icon={<FiMenu />}
+            size="md"
+          /> 
       <Drawer isOpen={isOpen} onClose={onClose} is placement="left" >
         <DrawerOverlay />
         <DrawerContent>
-          <SidebarContent w="full" borderRight="none" />
+          <SidebarContent  w="full" borderRight="none"  />
         </DrawerContent>
       </Drawer>
-      <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
+      <Box ml={{ base: 0, md: 60 }} transition="3s ease">
+  
         <Flex
           as="header"
           align="center"
@@ -57,14 +68,7 @@ export const  Index=()=> {
           boxShadow="sm"
           h="14"
         >
-          <IconButton
-            aria-label="Menu"
-            display={{ base: 'inline-flex', md: 'none' }}
-            onClick={onOpen}
-            icon={<FiMenu />}
-            size="md"
-          />
-
+          
           <Flex align="left" >
             <IconButton background={'transparent'} _hover={{background:'gray.20'}}marginRight={'20px'} color={useColorModeValue('gray.800', 'white')} icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}  onClick={toggleColorMode} cursor="pointer" />
             <UserProfile/>
@@ -119,7 +123,7 @@ const SidebarContent = ({ ...props }) => (
       </Text>
     </Flex>
     <Flex direction="column" justifyContent={'left'} alignItems={'left'} textAlign={'left'} as="nav" fontSize="md" color="gray.600" aria-label="Main Navigation">
-      <NavItem route={'/'}  icon={AiOutlineHome}>Dashboard</NavItem>
+      <NavItem route={'/'}   icon={AiOutlineHome}>Dashboard</NavItem>
       <NavItemGroup title="Cuentas">
         {accounts.map((item) => (
           <NavItem key={item.index} route={item.route}>{item.name}</NavItem>
@@ -139,11 +143,11 @@ const SidebarContent = ({ ...props }) => (
   </Box>
 );
 
-const NavItem = ({ route, icon, children }) => {
+const NavItem = ({ route ,icon, children }) => {
   const color = useColorModeValue('gray.600', 'gray.300');
 
   return (
-    <NavLink to={route}>
+    <NavLink to={route}  >
 
     <Flex
       align="center"

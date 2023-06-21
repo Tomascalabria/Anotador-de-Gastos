@@ -17,6 +17,7 @@ export const App = () => {
   const { user } = useContext(AuthContext);
   const bg=useColorModeValue('gray.100', 'gray.800')
   return (
+    
     <div className="App" style={{ width: '100%', height: '100%', margin: '0', padding: '0', background: bg }}>
       <NavBar />
       <Routes>

@@ -71,8 +71,11 @@ router.post('/add',async(req,res)=>{
 
     const addToSet = {
       $addToSet:{friends:{
-        friend_id:friend.id,
-        friend_username:friend.username
+        id:friend.id,
+        username:friend.username,
+        profile_image:friend.profile_image,
+        email:friend.email,
+        
       }}
     };
 
