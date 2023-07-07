@@ -12,12 +12,12 @@ import { AddFriends } from './components/AddFriends/AddFriends';
 import { useContext } from 'react';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import Profile from './UserProfile/ProfileConfig/ProfileConfig';
+import { CompanyDetail } from './components/Dashboard/Companies/CompanyDetail'; // Import the CompanyDetail component
 
 export const App = () => {
   const { user } = useContext(AuthContext);
-  const bg=useColorModeValue('gray.100', 'gray.800')
+  const bg = useColorModeValue('gray.100', 'gray.800');
   return (
-    
     <div className="App" style={{ width: '100%', height: '100%', margin: '0', padding: '0', background: bg }}>
       <NavBar />
       <Routes>
@@ -44,6 +44,11 @@ export const App = () => {
         <Route
           path="/profile"
           element={user ? <Profile /> : <Navigate to="/login" replace />}
+        />
+        {/* Route for the company detail page */}
+        <Route
+          path="/companies/:companyName"
+          element={user ? <CompanyDetail   /> : <Navigate to="/login" replace />}
         />
         {/* If the user is not logged in, redirect to the login page */}
         <Route path="*" element={!user ? <Navigate to="/login" replace /> : <Navigate to="/" replace />} />

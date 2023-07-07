@@ -1,8 +1,22 @@
 from django.db import models
 from cryptography.fernet import Fernet
+import os 
+KEY_FILE_PATH = 'fernet_key.txt'
 
-# Create a Fernet cipher object with a secret key
-cipher = Fernet(Fernet.generate_key())
+if not os.path.exists(KEY_FILE_PATH):
+    # Generate a new Fernet key
+    cipher = Fernet.generate_key()
+    
+    # Save the key to a file for future use
+    with open(KEY_FILE_PATH, 'wb') as key_file:
+        key_file.write(cipher)
+else:
+    # Load the existing Fernet key from the file
+    with open(KEY_FILE_PATH, 'rb') as key_file:
+        cipher = key_file.read()
+
+cipher = Fernet(cipher)
+
 
 class EncryptedPasswordField(models.CharField):
     def from_db_value(self, value, expression, connection):

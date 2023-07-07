@@ -1,6 +1,5 @@
 from django.db import models
-from .Encrypt import EncryptedPasswordField, EncryptedModel
-from PIL import Image
+from .Encrypt import EncryptedPasswordField
 
 class Credentials(models.Model):
     user_id = models.CharField(max_length=255)
@@ -8,10 +7,12 @@ class Credentials(models.Model):
     username = models.CharField(max_length=255)
     password = EncryptedPasswordField(max_length=255)
 
+
 class Balance(models.Model):
     company = models.ForeignKey('Company', on_delete=models.CASCADE, default=0)
     user_id = models.CharField(max_length=255)
     balance = models.DecimalField(max_digits=10, decimal_places=2)
+    last_updated =models.DateTimeField(auto_now=True)
 
 class Holding(models.Model):
     ticker = models.CharField(max_length=50)

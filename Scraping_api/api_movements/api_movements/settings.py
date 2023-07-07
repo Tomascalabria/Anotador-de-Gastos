@@ -1,7 +1,6 @@
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 
 import os
@@ -60,11 +59,14 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
+
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3030',
-]
+
 CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://localhost:3030',
 ]
@@ -81,6 +83,12 @@ DATABASES = {
         'PORT': os.environ.get('POSTGRESQL_PORT'),
     }
 }
+CORS_ALLOWED_METHODS = [
+    'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'
+]
+CORS_ALLOWED_HEADERS = [
+    'Accept', 'Content-Type', 'Authorization'
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {

@@ -1,6 +1,10 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
+
+from datetime import datetime
+
 from api_v1.serializers import (
     BalanceSerializer,
     HoldingSerializer,
@@ -33,39 +37,91 @@ class CredentialsView(APIView):
             return Response(serializer.errors, status=400)
 
 
+
 class UserCredentialsView(APIView):
     def get(self, request, company_id, user_id):
         credentials = get_object_or_404(Credentials, company_id=company_id, user_id=user_id)
+        print(credentials.password)
         return Response({
             'username': credentials.username,
             'password': credentials.password,
-            # Password field automatically decrypted by EncryptedPasswordField
         })
 
     def post(self, request, company_id, user_id):
+        # Check if credentials already exist
+        if Credentials.objects.filter(company_id=company_id, user_id=user_id).exists():
+            return Response({'message': ' Credentials for this company have already been registered.'}, status=status.HTTP_400_BAD_REQUEST)
+
         serializer = CredentialsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(company_id=company_id, user_id=user_id)
-            return Response(serializer.data, status=201)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(serializer.errors, status=400)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 class BalanceView(APIView):
-    def get(self, request, id):
-        username = request.GET.get('username')
-        password = request.GET.get('password')
+    def get(self, request, company_id, user_id):
+        username = request.data.get('username')
+        password = request.data.get('password')
 
         if username is None or password is None:
             return Response({'error': 'Invalid username or password'}, status=400)
 
+        balance_instance = Balance.objects.filter(company_id=company_id, user_id=user_id).first()
+
+        if balance_instance is None:
+            # Initialize the required drivers and services
+            driver = Driver()
+            cocos = Cocos(driver, username, password)
+            invertir_online = Iol(driver, username, password)
+
+            if company_id == '1':
+                balance_data = cocos.obtenerBalance()
+            elif company_id == '2':
+                balance_data = invertir_online.obtenerBalance()
+            else:
+                return Response({'error': 'Invalid balance ID'}, status=400)
+
+            if balance_data is None:
+                return Response({'error': 'Failed to obtain balance data'}, status=500)
+
+            # Create a new balance instance in the database
+            balance_instance = Balance.objects.create(
+                company_id=company_id,
+                user_id=user_id,
+                balance=balance_data['Balance'],
+                last_updated=datetime.now()
+            )
+
+        response_data = {
+            'balance': balance_instance.balance,
+            'last_updated': balance_instance.last_updated
+        }
+
+        return Response(response_data)
+
+
+
+class UpdateBalanceView(APIView):
+    def get(self, request, company_id, user_id):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        if username is None or password is None:
+            return Response({'error': 'Invalid username or password'}, status=400)
+
+        # Initialize the required drivers and services
         driver = Driver()
         cocos = Cocos(driver, username, password)
         invertir_online = Iol(driver, username, password)
 
-        if id == '1':
+        # Activate obtenerBalance for the required company
+        if company_id == 1:
             balance_data = cocos.obtenerBalance()
-        elif id == '2':
+        elif company_id == 2:
             balance_data = invertir_online.obtenerBalance()
         else:
             return Response({'error': 'Invalid balance ID'}, status=400)
@@ -73,14 +129,19 @@ class BalanceView(APIView):
         if balance_data is None:
             return Response({'error': 'Failed to obtain balance data'}, status=500)
 
-        balance_instance = Balance(balance=balance_data['Balance'])
-        balance_instance.save()
+        # Update the balance information in the database
+        balance_instance = Balance.objects.filter(company_id=company_id, user_id=user_id).first()
+        if balance_instance is not None:
+            balance_instance.balance = balance_data['Balance']
+            balance_instance.last_updated = datetime.now()
+            balance_instance.save()
 
-        serializer = BalanceSerializer(balance_instance)
+        response_data = {
+            'balance': balance_data['Balance'],
+            'last_updated': datetime.now()
+        }
 
-        return Response(serializer.data)
-
-
+        return Response(response_data)
 class HoldingView(APIView):
     def post(self, request):
         username = request.data.get('username')

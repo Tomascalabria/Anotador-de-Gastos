@@ -1,3 +1,4 @@
 /Crypto.py
 /key.key
 *env
+fernet_key.txt

@@ -24,9 +24,14 @@ class Cocos:
         self.driver._driver.fullscreen_window()
 
         # Find the banner element using CSS selector
-        user_input = self.driver._driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[2]/div[1]/div/input').send_keys(self.usuario)
-        password_input = self.driver._driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[2]/div[2]/div/input').send_keys(self.contraseña)
-        btn = self.driver._driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[3]/button').click()
+        user_input = self.driver._driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[2]/div[1]/div/input')
+        user_input.send_keys(self.usuario)
+    
+        password_input = self.driver._driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[2]/div[2]/div/input')
+        password_input.send_keys(self.contraseña)
+        
+        btn = self.driver._driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[3]/button')
+        btn.click()
         time.sleep(5)
         
     def obtenerBalance(self):
@@ -39,34 +44,33 @@ class Cocos:
         element = self.driver._driver.find_element(By.CSS_SELECTOR, '.heading-porftolio')
 
         portfolio_heading = self.driver._driver.find_element(By.CLASS_NAME, 'heading-porftolio')
-        value_element = portfolio_heading.find_element(By.CLASS_NAME, 'MuiTypography-heading3_bold')
+        value_element = portfolio_heading.find_element(By.XPATH, '/html/body/div[1]/div[1]/div/div/main/div/div[1]/div[2]/div[1]/div[1]/div[2]/p[2]')
         balance = value_element.text
 
         holding_rows = self.driver._driver.find_elements(By.CLASS_NAME, 'comp-holding-row-desktop')
 
-        data = []
+        # data = []
 
-        for row in holding_rows:
-            ticker_element = row.find_element(By.CLASS_NAME, 'short_ticker')
-            ticker = ticker_element.find_element(By.CLASS_NAME, 'MuiTypography-textS').text
+        # for row in holding_rows:
+        #     ticker_element = row.find_element(By.CLASS_NAME, 'short_ticker')
+        #     ticker = ticker_element.find_element(By.CLASS_NAME, 'MuiTypography-textS').text
 
-            variation_element = row.find_element(By.CLASS_NAME, 'last')
-            variation = variation_element.find_element(By.CLASS_NAME, 'MuiTypography-textS').text
+        #     variation_element = row.find_element(By.CLASS_NAME, 'last')
+        #     variation = variation_element.find_element(By.CLASS_NAME, 'MuiTypography-textS').text
 
-            price_element = row.find_element(By.CSS_SELECTOR, '.grid-col:nth-child(4) > span')
-            price = price_element.text
+        #     price_element = row.find_element(By.CSS_SELECTOR, '.grid-col:nth-child(4) > span')
+        #     price = price_element.text
 
-            quantity_element = row.find_element(By.CSS_SELECTOR, '.grid-col:nth-child(5) > span')
-            quantity = quantity_element.text
+        #     quantity_element = row.find_element(By.CSS_SELECTOR, '.grid-col:nth-child(5) > span')
+        #     quantity = quantity_element.text
 
-            amount_element = row.find_element(By.CSS_SELECTOR, '.amount-container .MuiTypography-textS')
-            amount = amount_element.text
+        #     amount_element = row.find_element(By.CSS_SELECTOR, '.amount-container .MuiTypography-textS')
+        #     amount = amount_element.text
 
-            data.append({'Ticker': ticker, 'Variation': variation, 'Price': f'${price}', 'Quantity': quantity, 'Amount': f'${amount}'})
+            # data.append({'Ticker': ticker, 'Variation': variation, 'Price': f'${price}', 'Quantity': quantity, 'Amount': f'${amount}'})
 
         response = {
             'Balance': balance,
-            'Holdings': data
         }
 
         return response
