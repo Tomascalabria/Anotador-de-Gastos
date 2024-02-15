@@ -1,11 +1,11 @@
 
 
-# P I A N L
+# FinAnalitycs
 <img width="946" alt="image" src="https://github.com/Tomascalabria/Gestor-de-Finanzas/assets/81932784/c0711c19-db94-4c33-888b-b40bd80c850d">
 
-This is a project that allows you to keep a record and control of your personal expenses and finances. The application allows you to input and manage your expenses, as well as share expenses with your friends and review your bank account transactions.
+This is a project that allows you to keep a record and control of your investments. The application allows you to input and manage your investments and keep of track of your portfolio. 
 
-The application includes a web scraping feature that allows you to obtain the transactions, balances, and positions of your account in: *Cocos Capital*, *Invertir Online*, *Santander Rio*, *BBVA*, among others! This provides you with an overall view of your finances in one place, centralizing the information from your bank accounts.
+The application includes a web scraping feature that allows you to obtain the transactions, balances, and positions of your account in: *Cocos Capital*, *Invertir Online* This provides you with an overall view of your finances in one place, centralizing the information from your bank accounts.
 
 
 ### Main Features*
@@ -27,7 +27,6 @@ The application includes a web scraping feature that allows you to obtain the tr
 ##### *Deploy *
 
 ```python
-Git clone https://github.com/Tomascalabria/Anotador-de-Gastos.git
 ```
 
 
