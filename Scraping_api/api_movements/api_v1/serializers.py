@@ -13,14 +13,14 @@ class BalanceSerializer(serializers.ModelSerializer):
 class HoldingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Holding
-        fields = ('ticker', 'variation', 'price', 'quantity', 'amount')
+        fields = ['id', 'ticker', 'price', 'quantity', 'amount','variation', 'weight', 'company_id']
 
 class BuySellMovementSerializer(serializers.ModelSerializer):
     class Meta:
         model = BuySellMovement
         fields = ('ticker', 'operation', 'type', 'day', 'quantity', 'total_movement', 'status')
 
-class DepositExtractionMovementSerializer(serializers.ModelSerializer):
+class AccountMovements  (serializers.ModelSerializer):
     class Meta:
         model = DepositExtractionMovement
         fields = ('ticker', 'operation', 'type', 'day', 'quantity', 'total_movement', 'status')

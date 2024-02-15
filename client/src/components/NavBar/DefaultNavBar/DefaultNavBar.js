@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Box,
   Button,
-  Heading,
+Text,
   Flex,
   HStack,
   useBreakpointValue,
@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { ModalDefaultMenu } from './ModalDefaultMenu.js';
-import icon from '../../../Icons/image-em8mmKxnS-transformed-removebg-preview.png'
 
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 
@@ -22,7 +21,7 @@ export const DefaultNavBar = () => {
     base: false,
     lg: true,
   });
-  const titleColor = useColorModeValue('primary', 'white');
+  // const titleColor = useColorModeValue('primary', 'white');
   const { colorMode, toggleColorMode } = useColorMode();
   
   const hoverStyle = {
@@ -38,7 +37,7 @@ export const DefaultNavBar = () => {
       display="inline-flex"
       justifyContent="center"
       alignContent={'center'}
-      bg={useColorModeValue('white', 'gray.800')}
+      bg={useColorModeValue('white', 'rgb(26,27,32)')}
       pb={{
         base: '12',
         md: '18',
@@ -46,22 +45,32 @@ export const DefaultNavBar = () => {
     >
       <Box
         as="nav"
-        bg={useColorModeValue('white', 'gray.800')}
+        bg={useColorModeValue('white', 'rgb(26,27,32)')}
         w="100%"
         justifyContent="center"
         display="inline-flex"
         boxShadow={useColorModeValue('sm', 'sm-dark')}
       >
-        <Flex py={{ base: '4', lg: '5' }}  paddingBottom={'0'}  w="100%" justifyContent="space-around" alignContent={'center'}>
+        <Flex py={{ base: '4', lg: '5' }} borderBottom={'solid gray 0.01px '}  paddingBottom={'0'}  w="100%" justifyContent="space-around" alignContent={'center'}>
           <Box p="3">
-            <Link to="/"><ButtonGroup justifyContent="space-evenly" h={'100%'} display="inline-flex" alignItems="center" alignContent={'center'}><img width={'150px'} height={'150px'} src={icon}></img></ButtonGroup>
+            <Link to="/"><ButtonGroup justifyContent="space-evenly" h={'100%'} display="inline-flex" alignItems="center" alignContent={'center'}>      <Text
+
+fontSize="3xl"
+ml="1"
+color={useColorModeValue('brand.500', 'white')}
+fontWeight='bold'
+>
+FinAnalitycs
+
+
+</Text></ButtonGroup>
                 
             
             </Link>
           </Box>
 
           {isDesktop ? (
-            <Flex justifyContent="space-evenly" width="65%" display="inline-flex" alignItems="center" alignContent={'center'}>
+            <Flex justifyContent="space-evenly" width="65%" display="inline-flex" alignItems="center" alignContent={'center'} >
               <HStack spacing="12">
                 <Link to="/login" > 
                   <Button variant="ghost" style={{ marginLeft: '6em' }} _hover={hoverStyle}>

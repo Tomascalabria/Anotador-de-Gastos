@@ -8,7 +8,7 @@ export const Home = () => {
   
 
   return (
-    <Container background={useColorModeValue('white', 'gray.800')} minWidth={'100%'} w={'100%'} h={"xl"}>
+    <Container background={useColorModeValue('white', 'rgb(26,27,32)')} minWidth={'100%'} w={'100%'} h={"xl"}>
 
     </Container>
   );

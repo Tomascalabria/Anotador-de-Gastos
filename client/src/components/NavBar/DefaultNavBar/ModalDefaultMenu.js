@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 export const ModalDefaultMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-  const bg=useColorModeValue('gray.100', 'gray.800')
+  const bg=useColorModeValue('gray.100', 'rgb(26,27,32)')
 
   return (
     <>

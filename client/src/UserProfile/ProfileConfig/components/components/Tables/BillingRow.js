@@ -11,7 +11,7 @@ import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
 function BillingRow(props) {
   const textColor = useColorModeValue("gray.700", "white");
-  const bgColor = useColorModeValue("#F8F9FA", "gray.800");
+  const bgColor = useColorModeValue("#F8F9FA", "rgb(26,27,32)");
   const nameColor = useColorModeValue("gray.500", "white");
   const { name, company, email, number } = props;
 

@@ -116,13 +116,13 @@ setTimeout(()=>{
           </Stack>
         </Box>
         <Box w={'100%'} justifyContent='flex-start 'alignItems={'center'} alignContent='center' display={'flex'} flexDir='column'   maxW='950px' h='md'  marginTop={'2rem'}>
-  <Table  display='table'  justifyContent={'center'} textAlign='center' variant={'simple'} background={useColorModeValue('transparent','gray.800')}>
+  <Table  display='table'  justifyContent={'center'} textAlign='center' variant={'simple'} background={useColorModeValue('transparent','rgb(26,27,32)')}>
 
-    <Thead   color={useColorModeValue('blackAlpha.800','blue.400')}>
+    <Thead   color={useColorModeValue('rgb(26,27,32)Alpha.800','blue.400')}>
     <Tr color="gray.400">
    
-      <Th color={useColorModeValue("blackAlpha.800",'white')}>Username</Th>
-      <Th color={useColorModeValue("blackAlpha.800",'white')}>Email</Th>
+      <Th color={useColorModeValue("rgb(26,27,32)Alpha.800",'white')}>Username</Th>
+      <Th color={useColorModeValue("rgb(26,27,32)Alpha.800",'white')}>Email</Th>
       
     </Tr>
   </Thead>

@@ -32,7 +32,7 @@ export const PriceTag = (props) => {
 
 const Amount = (props) => {
   const { isOnSale, children, textProps } = props
-  const defaultColor = mode('blackAlpha.900', 'blackAlpha.900')
+  const defaultColor = mode('rgb(26,27,32)Alpha.900', 'rgb(26,27,32)Alpha.900')
   const onSaleColor = mode('red.400', 'red.700')
 
   const color = isOnSale ? onSaleColor : defaultColor
@@ -51,5 +51,5 @@ const Amount = (props) => {
 }
 
 const SalePrice = (props) => (
-  <Text as="span"   fontWeight="semibold" color={mode('blackAlpha.900', 'blackAlpha.900')} {...props} />
+  <Text as="span"   fontWeight="semibold" color={mode('rgb(26,27,32)Alpha.900', 'rgb(26,27,32)Alpha.900')} {...props} />
 )

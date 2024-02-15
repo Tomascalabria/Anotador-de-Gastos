@@ -11,17 +11,21 @@ class Credentials(models.Model):
 class Balance(models.Model):
     company = models.ForeignKey('Company', on_delete=models.CASCADE, default=0)
     user_id = models.CharField(max_length=255)
-    balance = models.DecimalField(max_digits=10, decimal_places=2)
-    last_updated =models.DateTimeField(auto_now=True)
+    balance_ars = models.DecimalField(max_digits=10, decimal_places=2)
+    balance_usd = models.DecimalField(max_digits=10, decimal_places=2)
+    last_updated = models.DateTimeField(auto_now=True)
+    
 
 class Holding(models.Model):
     ticker = models.CharField(max_length=50)
-    variation = models.CharField(max_length=50)
     price = models.CharField(max_length=50)
     quantity = models.CharField(max_length=50)
     amount = models.CharField(max_length=50)
-    company = models.ForeignKey('Company', on_delete=models.CASCADE, default=0)
+    weight = models.FloatField(default=0)  # Add the weight column
     user_id = models.CharField(max_length=255)
+    variation = models.FloatField(null=True)
+    company_id = models.ForeignKey('Company', on_delete=models.CASCADE, default=0)
+
 
 class BuySellMovement(models.Model):
     ticker = models.CharField(max_length=50)

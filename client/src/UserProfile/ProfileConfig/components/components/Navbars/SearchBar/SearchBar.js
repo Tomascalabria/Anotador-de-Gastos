@@ -13,7 +13,7 @@ export function SearchBar(props) {
   // Chakra Color Mode
   const mainTeal = useColorModeValue("teal.300", "teal.300");
   const searchIconColor = useColorModeValue("gray.700", "gray.200");
-  const inputBg = useColorModeValue("white", "gray.800");
+  const inputbg = useColorModeValue("#ffff", "rgb(26,27,32)");
   return (
     <InputGroup
       bg={inputBg}

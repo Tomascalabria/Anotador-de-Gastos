@@ -11,7 +11,7 @@ const [status,setStatus]=useState('')
 const [response,setResponse]=useState('')
 const {isFetching}=useContext(AuthContext)
 
-const bg=useColorModeValue('white', 'gray.800')
+const bg=useColorModeValue('white', 'rgb(26,27,32)')
 
 const handleChange=()=>{
   console.log ({Username:username.current.value.length})
@@ -119,7 +119,7 @@ res.status===201?setTimeout(() => {
             </Stack>
             
             <Stack spacing="6">
-              <Button type={'submit'} fontWeight='bold' variant="primary" _hover={{background:'##F8FB', color:'black',border:'solid 0.2px black'}}>Registrarme</Button>
+              <Button type={'submit'} fontWeight='bold' variant="primary" _hover={{background:'##F8FB', color:'rgb(26,27,32)',border:'solid 0.2px rgb(26,27,32)'}}>Registrarme</Button>
                
 
             </Stack>

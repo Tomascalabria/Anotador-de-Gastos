@@ -110,7 +110,7 @@ axios.post(`${prod_url}`,{title:title.current.value,amount:monto.current.value,t
             </Stack>
             
             <Stack spacing="6">
-              <Button type={'submit'} fontWeight='bold' variant="primary" _hover={{background:'##F8FB', color:'black',border:'solid 0.2px black'}}>Crear Gasto</Button>
+              <Button type={'submit'} fontWeight='bold' variant="primary" _hover={{background:'##F8FB', color:'rgb(26,27,32)',border:'solid 0.2px rgb(26,27,32)'}}>Crear Gasto</Button>
                
             </Stack>
           </Stack>

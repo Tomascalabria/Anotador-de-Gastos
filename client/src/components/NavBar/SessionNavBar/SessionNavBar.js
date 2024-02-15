@@ -39,10 +39,10 @@ const closeSideBarAfterRouting=()=>{
     onClose()
   }, 1000);
 }
-
+// borderBottom={`solid 1px ${useColorModeValue('gray', 'white')}`}
   return (
-    <Box as="section" background={useColorModeValue('gray.100', 'gray.800')} borderBottom={`solid 1px ${useColorModeValue('gray', 'white')}`} marginLeft={'0px'} h={'100%'} w={'100%' } justifyContent={'space-between'} alignContent={'center'} display={'flex'}>
-        <IconButton marginLeft={'4px'} marginTop={'5px'} border={`solid 0.1px ${useColorModeValue('black', 'white')}`}
+    <Box as="section" background={useColorModeValue('white', 'rgb(26,27,32)')}  marginLeft={'0px'} h={'100%'} w={'100%' } justifyContent={'space-between'} alignContent={'center'} display={'flex'}>
+        <IconButton marginLeft={'4px'} marginTop={'5px'} border={`solid 0.1px ${useColorModeValue('rgb(26,27,32)', 'white')}`}
             aria-label="Menu"
             onClick={onOpen}
             icon={<FiMenu />}
@@ -62,16 +62,15 @@ const closeSideBarAfterRouting=()=>{
           justify={{ base: 'space-between', md: 'flex-end' }}
           w="100%"
           px="4"
-          borderBottomWidth="1px"
-          borderColor={useColorModeValue('inherit', 'gray.700')}
-          bg={useColorModeValue('gray.100', 'gray.800')}
+          // borderBottomWidth="1px"
+          // borderColor={useColorModeValue('inherit', 'gray.700')}
+          bg={useColorModeValue('#fffff', 'rgb(26,27,32)')}
           boxShadow="sm"
           h="14"
         >
           
           <Flex align="left" >
             <IconButton background={'transparent'} _hover={{background:'gray.20'}}marginRight={'20px'} color={useColorModeValue('gray.800', 'white')} icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}  onClick={toggleColorMode} cursor="pointer" />
-            <UserProfile/>
           </Flex>
         </Flex>
 
@@ -81,18 +80,11 @@ const closeSideBarAfterRouting=()=>{
   );
 }
 
-const friends = [
-  { name: 'Ver Amigxs', index: 1, route: '/amigos/ver' },
-  { name: 'Agregar amigxs', index: 2, route: '/amigos/agregar' },
-];
 const accounts = [
   { name: 'Balances', index: 1, route: '/cuentas/balances' },
   { name: 'Movimientos', index: 2, route: '/cuentas/movimientos' },
-  { name: 'Configuración', index: 3, route: '/cuentas/configuracion' },
 ];
-const expenses = [
-  { name: 'Crear Gasto', index: 0, route: '/gastos/crear' },
-  { name: 'Ver gastos', index: 1, route: '/gastos/ver' },
+const friends = [
 ];
 const SidebarContent = ({ ...props }) => (
   <Box
@@ -102,49 +94,41 @@ const SidebarContent = ({ ...props }) => (
     left="0"
     zIndex="sticky"
     h="full"
-    w={'40'}
+    w={'60'}
     pb="10"
     overflowX="hidden"
     overflowY="hidden"
-    bg={useColorModeValue('gray.100', 'gray.800')}
-    borderColor={useColorModeValue('inherit', 'gray.700')}
+    bg={useColorModeValue('white', 'rgb(26,27,32)')}
+    borderColor={useColorModeValue('inherit', 'rgb(26,27,32)')}
     borderRightWidth="2px"
     {...props}
   >
     <Flex px="4" py="5" align="center">
       <Text
-
+        
         fontSize="3xl"
         ml="1"
         color={useColorModeValue('brand.500', 'white')}
         fontWeight='bold'
       >
-        PIANL
+        FinAnalitycs
       </Text>
     </Flex>
-    <Flex direction="column" justifyContent={'left'} alignItems={'left'} textAlign={'left'} as="nav" fontSize="md" color="gray.600" aria-label="Main Navigation">
+    <Flex direction="column"  justifyContent={'left'} alignItems={'left'} textAlign={'left'} as="nav" fontSize="md" color="gray.600" aria-label="Main Navigation">
       <NavItem route={'/'}   icon={AiOutlineHome}>Dashboard</NavItem>
       <NavItemGroup title="Cuentas">
         {accounts.map((item) => (
-          <NavItem key={item.index} route={item.route}>{item.name}</NavItem>
+          <NavItem key={item.index}  route={item.route}>{item.name}</NavItem>
         ))}
       </NavItemGroup>
-      <NavItemGroup title="Gastos">
-        {expenses.map((item) => (
-          <NavItem key={item.index} route={item.route}>{item.name}</NavItem>
-        ))}
-      </NavItemGroup>
-      <NavItemGroup title="Amigxs">
-        {friends.map((item) => (
-          <NavItem key={item.index} route={item.route}>{item.name}</NavItem>
-        ))}
-      </NavItemGroup>
+      
+          
     </Flex>
   </Box>
 );
 
 const NavItem = ({ route ,icon, children }) => {
-  const color = useColorModeValue('gray.600', 'gray.300');
+  const color = useColorModeValue('rgb(26,27,32)', 'white');
 
   return (
     <NavLink to={route}  >
@@ -157,10 +141,10 @@ const NavItem = ({ route ,icon, children }) => {
       role="group"
       fontWeight="semibold"
       transition=".15s ease"
-      color={useColorModeValue('inherit', 'gray.400')}
+      color={useColorModeValue('rgb(26,27,32)', 'white')}
       _hover={{
-        bg: useColorModeValue('gray.200', 'gray.900'),
-        color: useColorModeValue('gray.900', 'gray.200')
+        bg:useColorModeValue('white', 'rgb(26,27,32)'),
+        color: useColorModeValue('gray.900', 'gray.400')
       }}
     >
         {icon && (

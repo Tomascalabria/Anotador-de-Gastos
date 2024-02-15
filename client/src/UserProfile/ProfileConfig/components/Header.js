@@ -35,7 +35,7 @@ const Header = ({
       
       align='center'>
       <Box
-background={useColorModeValue("#b3c0e6db", "gray.700")}        
+background={useColorModeValue("#b3c0e6db", "rgb(26,27,32)")}        
         w='100%'
         h='300px'
         borderRadius='25px'

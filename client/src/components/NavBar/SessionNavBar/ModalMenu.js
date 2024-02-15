@@ -20,7 +20,6 @@ import { Link } from "react-router-dom";
 import { UserProfile } from "../../../UserProfile/UserProfile";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { FriendsContactButton } from "./FriendsContactButton";
-import { ExpensesContactButon } from "./ExpensesContactButon";
 import { AccountsContactButton } from "./Accounts";
 
 export const ModalMenu = ({ handleLogout }) => {
@@ -28,20 +27,14 @@ export const ModalMenu = ({ handleLogout }) => {
   const btnRef = useRef();
   const { colorMode, toggleColorMode } = useColorMode();
 
-  const expenses = [
-    { name: "Crear Gasto", index: 0, route: "/gastos/crear" },
-    { name: "Ver gastos", index: 1, route: "/gastos/ver" },
-  ];
-
-  const friends = [
-    { name: "Ver Amigxs", index: 1, route: "/amigos/ver" },
-    { name: "Agregxr amigos", index: 2, route: "/amigos/agregar" },
-  ];
+  // const friends = [
+  //   { name: "Ver Amigxs", index: 1, route: "/amigos/ver" },
+  //   { name: "Agregxr amigos", index: 2, route: "/amigos/agregar" },
+  // ];
 
   const accounts = [
     { name: "Balances", index: 1, route: "/cuentas/balances" },
     { name: "Movimientos", index: 2, route: "/cuentas/movimientos" },
-    { name: "Configuración", index: 3, route: "/cuentas/configuracion" },
   ];
 
   return (
@@ -84,10 +77,7 @@ export const ModalMenu = ({ handleLogout }) => {
                 <AccountsContactButton props={{ onClose }} accounts={accounts} key={accounts.index} />
               </ButtonGroup>
 
-              <ButtonGroup spacing="8">
-                <ExpensesContactButon props={{ onClose }} expenses={expenses} key={expenses.index} />
-              </ButtonGroup>
-
+         
               <ButtonGroup spacing="8">
                 <FriendsContactButton props={{ onClose }} friends={friends} key={friends.index} />
               </ButtonGroup>

@@ -46,7 +46,7 @@ export function SidebarHelp(props) {
           _focus={{
             boxShadow: "none",
           }}
-          color="black"
+          color="rgb(26,27,32)"
         >
           DOCUMENTATION
         </Button>

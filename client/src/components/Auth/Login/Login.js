@@ -22,14 +22,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loginProcess } from '../../../Context/ApiCall';
 import { AuthContext } from '../../../Context/AuthContext';
 import { PasswordField } from '../PasswordField';
+import { transform } from 'framer-motion';
 
 export const Login = () => {
   const { user, error, dispatch } = useContext(AuthContext);
   const username = useRef();
   const password = useRef();
   const navigate = useNavigate();
-  const bg = useColorModeValue('white', 'gray.800');
-
+  const bg = useColorModeValue('#ffff', 'rgb(26,27,32)');
+  const border =useColorModeValue("solid 1px rgb(26,27,32)","solid 1px white")
+  const hover=useColorModeValue({background: '##F8FB', color: 'rgb(26,27,32)', border: 'solid 0.2px rgb(26,27,32)'},{background: '##F8FB', color: 'white', border: 'solid 0.2px white'})
   const handleClick = (e) => {
     e.preventDefault();
     loginProcess(
@@ -70,12 +72,15 @@ export const Login = () => {
         sm: '8',
       }}
       bg={bg}
-    >
+    
+      
+      >
       <Heading
         size={useBreakpointValue({
           base: 'xl',
           md: '2xl',
         })}
+        
         textAlign="center"
         marginTop="-2em"
         style={{ fontSize: '2rem' }}
@@ -83,7 +88,7 @@ export const Login = () => {
         Logueate
       </Heading>
 
-      <Stack spacing="8">
+      <Stack spacing="8"  >
         <Stack spacing="6">
           <Stack
             spacing={{
@@ -143,7 +148,7 @@ export const Login = () => {
                 <Button
                   variant="primary"
                   type="submit"
-                  _hover={{ background: '##F8FB', color: 'black', border: 'solid 0.2px black' }}
+                  _hover={hover}
                 >
                   Loguarme
                 </Button>
@@ -175,7 +180,6 @@ export const Login = () => {
                   fontSize="sm"
                   fontWeight="bold"
                 >
-                  {error.response.data}
                 </chakra.p>
               </Box>
             </Box>

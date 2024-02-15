@@ -34,10 +34,10 @@ export default function HeaderLinks(props) {
 
   // Chakra Color Mode
   let mainTeal = useColorModeValue("teal.300", "teal.300");
-  let inputBg = useColorModeValue("white", "gray.800");
+  let inputbg = useColorModeValue("#ffff", "rgb(26,27,32)");
   let mainText = useColorModeValue("gray.700", "gray.200");
   let navbarIcon = useColorModeValue("gray.500", "gray.200");
-  let searchIcon = useColorModeValue("gray.700", "gray.200");
+  let searchIcon = useColorModeValue("rgb(26,27,32)", "gray.200");
 
   if (secondary) {
     navbarIcon = "white";

@@ -21,7 +21,7 @@ function Sidebar(props) {
   let sidebarRadius = "0px";
   let sidebarMargins = "0px";
   if (sidebarVariant === "opaque") {
-    sidebarBg = useColorModeValue("white", "gray.700");
+    sidebarbg = useColorModeValue("#ffff", "rgb(26,27,32)");
     sidebarRadius = "16px";
     sidebarMargins = "16px 0px 16px 16px";
   }

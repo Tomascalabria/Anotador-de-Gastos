@@ -10,7 +10,7 @@ const theme = extendTheme({
     primary: '#FF0000', // Custom primary color
     background: '#F5F5F5', // Custom light background color
     dark: {
-      background: '#2A2A2A', // Custom dark background color
+      background: 'rgb(26,27,32)', // Custom dark background color
       // Add more custom colors for dark mode if needed
     },
     // Add more custom colors here

@@ -41,7 +41,7 @@ const Projects = ({ title, description }) => {
   const textColor = useColorModeValue("gray.700", "white");
 const hoverStyle={
   background:useColorModeValue("#b3c0e6db", "#b3c0e6db"),
-  textColor: useColorModeValue("black", "white")
+  textColor: useColorModeValue("rgb(26,27,32)", "white")
 
 }
 
@@ -94,6 +94,25 @@ const hoverStyle={
                 Agregar Compania
               </Text>
             </Flex>
+            
+          </Button>
+          <Button
+            p='0px'
+            bg='transparent'
+            _hover={hoverStyle}
+            color='gray.500'
+            marginLeft={'20px'}
+            border='1px solid lightgray'
+            borderRadius='15px'
+            minWidth={{ sm: "180px" }}
+            minHeight={{ sm: "180px"}}>
+            <Flex direction='column' w={'100%'} justifyContent='center' align='center'>
+              <Icon as={FaPlus} fontSize='lg' mb='12px' />
+              <Text fontSize='lg' fontWeight='bold' >
+                Conectar Splitwise
+              </Text>
+            </Flex>
+            
           </Button>
         </Grid>
       </CardBody>

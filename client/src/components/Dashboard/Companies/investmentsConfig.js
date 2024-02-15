@@ -28,7 +28,7 @@ export const investmentsConfig = () => {
   }, [user]);
 
   return (
-<Box w={'80%'} bg={useColorMode('gray.100', 'gray.800')} >
+<Box w={'80%'} bg={useColorMode('gray.100', 'rgb(26,27,32)')} >
 
 </Box>
   

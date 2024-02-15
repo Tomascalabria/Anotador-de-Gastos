@@ -37,7 +37,7 @@ export default function Configurator(props) {
     "white"
   );
   let colorButton = useColorModeValue("white", "gray.700");
-  const secondaryButtonBg = useColorModeValue("white", "transparent");
+  const secondaryButtonbg = useColorModeValue("#ffff", "transparent");
   const secondaryButtonBorder = useColorModeValue("gray.700", "white");
   const secondaryButtonColor = useColorModeValue("gray.700", "white");
   const settingsRef = React.useRef();

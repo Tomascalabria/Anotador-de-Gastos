@@ -18,9 +18,11 @@ root.render(
     <BrowserRouter>
       <AuthContextProvider>
         <ExpensesContextProvider>
-        <ChakraProvider  >
-            <ColorModeScript initialColorMode={'system'} />         
-                <App />
+          
+        <ChakraProvider theme={theme}  >
+                    <App />
+             
+                
           </ChakraProvider>
         </ExpensesContextProvider>
       </AuthContextProvider>
